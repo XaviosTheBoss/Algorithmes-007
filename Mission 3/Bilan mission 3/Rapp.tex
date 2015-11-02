@@ -27,7 +27,6 @@
 \setlength{\parindent}{5mm}
 \usepackage{amsmath}
 \usepackage{color}
-
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -56,13 +55,65 @@
 
 \section*{Questions et réponses}
 \begin{enumerate}
-\item Vrai ou Faux BST
+\item Vrai ou Faux (BST s’entend ici comme l’implémentation du livre Algorithms-4)
 \begin{enumerate}
-\item Parcourt infixe = sag, racine, sad donc vrai
-\item
-\item vrai
-\item
-\end{enumerate}
+\item Etant donné un parcours infixe d’un BST contenant N clefs distinctes. Est-il
+possible de reconstruire la forme du BST sur base du résultat du parcourt ?\\
 
+{\color{dkgreen} Parcourt infixe = sag, racine, sad donc vrai }
+
+\item Dans le meilleur de cas, le nombre de comparaisons entre clefs pour une recherche
+binaire d’une clef particulière dans un tableau trié de N clefs distinctes
+est $\sim$ lgN. \\
+
+\item Etant donné un arbre ordonné de N clefs distinctes et une clef x, est-il possible
+de trouver la plus petite clef strictement plus grande que x en temps
+logarithmique dans le pire cas ? \\
+
+\item La hauteur attendue (au sens statistique) d’un BST résultant de l’insertion de
+N clefs distinctes dans un ordre aléatoire dans un arbre initialement vide est
+logarithmique. \\
+
+\item Soit x un noeud dans un BST. Le successeur de x (le noeud contenant la clef
+suivante dans l’ordre croissant) est le noeud le plus à gauche dans l’arbre de
+droite de x.\\
+
+\end{enumerate}
+\item Vrai ou Faux (Les 2-3/red-black BST sont ceux du livre Algorithms-4).
+\begin{enumerate}
+\item La hauteur maximum d'un 2-3 tree avec N clefs est $\sim log_3$N.\\
+
+
+\item L'insertion de N clefs dans l'ordre croissant dans un red-black BST initialement
+vide résulte en un nombre de changement de couleur d'au plus N.\\
+
+\item Un red-black BST obtenu après insertion de N > 1 clefs dans un arbre initialement
+vide possède au moins un lien rouge.\\
+
+\item Dans un red-black BST de N noeuds, la hauteur noire (i.e. le nombre de liens
+noirs de chaque chemin depuis la racine vers un lien null) est maximum lgN.\\
+
+\item Un red-black tree classique est un BST dans lequel les liens sont colorés soit
+rouge soit noir de sorte que tout les chemins de la racine vers un lien null a
+le même nombre de liens noirs (équilibre noir parfait) et dans lequel il n'y
+a jamais plus d'un lien rouge consécutif le long d'un chemin (mais ceux-ci
+peuvent pencher à gauche ou à droite et les deux liens d'un noeud peuvent
+être rouges). Dans un red-black BST classique, la hauteur est entre $\sim$ lgN
+and $\sim$ 2lgN.
+\end{enumerate}
+\item Imaginez un algorithme de tri utilisant un BST. Quelle serait la complexité de
+votre algorithme si le BST est remplacé par un red-black BST ?
+\item Est-ce que l’opération de suppression est "commutative" dans le sens que supprimer
+x et ensuite directement y d’un BST laisse l’arbre dans même état que si on
+avait d’abord supprimé y et puis x ? Donnez un contre exemple ou argumentez
+pourquoi c’est effectivement toujours le cas.
+\item Arbres doublement cousus. Imaginez un algorithme non récursif de parcourt infixe
+d’un BST qui n’utilise pas de stack et qui laisse le BST inchangé. Pour se faire, il
+faut repenser l’utilisation des liens null dans le BST de cette manière : remplacez
+un lien null gauche par un pointeur vers son prédécesseur infixe du noeud
+(s’il existe), et remplacez un lien null droit par son successeur infixe. Mettez
+à jour put(), deleteMin(), deleteMax() et delete() pour maintenir
+ces invariants. Hint : vous pourriez avoir besoin d’ajouter deux boolean’s dans
+les noeuds pour indiquer la nature des liens.
 \end{enumerate}
 \end{document}
