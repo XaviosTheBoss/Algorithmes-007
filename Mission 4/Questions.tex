@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage[a4paper]{geometry}
 \usepackage{listings}
+\usepackage{amssymb}
 	\lstset{frame=tb,
 		language=Java,
  		aboveskip=3mm,
@@ -55,9 +56,44 @@
 
 \section*{Questions et réponses}
 \begin{enumerate}
-\item
-\item 
-\item 
+\item Citez au moins quatre implémentations différentes d’un dictionnaire (table de
+symboles). Précisez, dans chaque cas, quelles sont les propriétés principales
+de ces implémentations. Dans quel(s) cas s’avèrent-elles intéressantes ? Quelles
+sont les complexités calculatoires de leurs principales méthodes ?\\
+\begin{enumerate}
+\item \textbf{Recherche séquentielle (liste désordonnée) :}
+
+Une option simple pour la structure de données d'une table de symboles est une liste chaînée de noeuds qui contiennent des clés et des valeurs. Le principe de l'algorithme est qu'il parcourt la liste en comparant la clé de recherche avec la clé de chaque noeud dans la liste. Si les clés concordent, il retourne la valeur associée. Sinon, il retourne $null$. La mise en œuvre d'une liste liée à la recherche séquentielle est trop lente pour qu'elle puisse être utilisée pour résoudre d'énormes problèmes. Cependant, elle est idéale pour les petits problèmes.
+
+\item \textbf{Binary tree search (BST) :}
+
+Un arbre de recherche binaire est un arbre binaire où chaque noeud a une clé (et une valeur associée) et qui satisfait la restriction que la clé dans un noeud quelconque est plus grande que celle de tous les noeuds du sous-arbre gauche de ce noeud et plus petite que celle de tous les nœuds du sous-arbre droit de ce noeud. La mise en oeuvre de cette structure est très facile à implémenter. Cependant, si l'abre ressemble à une liste chaînée, cela risque d'augmenter fortement la complexité. 
+
+\item \textbf{Separate chaining (tableau de listes) :}
+
+Dans la méthode dite de chaînage séparé, chaque bucket est indépendant, et a une sorte de liste des entrées avec le même index. Le temps d'exécution d'une opération d'une table de hachage est le temps de trouver le bucket (qui est constant) plus le temps de l'opération concernant la liste. Dans une bonne table de hachage, chaque bucket a 0 ou 1 entrée, parfois 2 ou 3, mais rarement plus que cela. Par conséquent, les structures sont efficaces dans le temps et l'espace. Cependant, ce procédé hérite également les inconvénients des listes liées. En effet, lors du stockage de petites clés et de valeurs, la surcharge de l'espace du prochain pointeur dans chaque entrée peut être importante. 
+
+\item \textbf{Linear probing (tableaux parallèles) :}
+
+Linear probing est réalisée en utilisant deux valeurs : une étant comme une valeur de départ et une autre étant comme un intervalle entre les valeurs successives en arithmétique modulaire. La seconde valeur, qui est la même pour toutes les clés et connue sous le nom $stepsize$, est ajoutée à plusieurs reprises à la valeur de départ jusqu'à ce qu'un espace libre est trouvé, ou que toute la table soit parcourue.
+\begin{center}
+$newLocation = (startingValue + stepSize) \% arraySize$
+\end{center}
+Cet algorithme offre une bonne mise en cache de la mémoire (si $stepsize$ est égal à un), grâce à la bonne localité de référence.\\
+\end{enumerate}
+\textbf{Résumé :}
+\begin{center}
+\includegraphics[scale=0.75]{symbol.PNG}
+\end{center}
+\item Souvenez vous de la question suivante proposée en bilan sur la mission sur les
+tris : Étant donné un ensemble $S$ de taille $n$, et un nombre $x$. Décrivez un algorithme
+efficace utilisant une HashTable pour trouver s’il existe une paire $(a, b)$
+avec $a \in S$, $b \in S$ telle que $a + b = x$. Quelle est la complexité de votre algorithme
+? Est-elle meilleure que votre solution qui utilisait un tri ?
+\item Démontrez que $(a + b)\%M$ est équivalent à $((a\%M) + b)\%M$. En quoi cette 
+propriété peut être utile pour construire une fonction de hachage sur les String.
+Expliquez comment Java calcule une fonction de hachage sur les String ? Quelle
+est la complexité pour calculer 1 fois et N fois le hashcode d’un String.
 \item
 \item 
 \item 
