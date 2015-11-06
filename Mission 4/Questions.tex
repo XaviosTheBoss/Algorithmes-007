@@ -89,7 +89,11 @@ Cet algorithme offre une bonne mise en cache de la mémoire (si $stepsize$ est �
 tris : Étant donné un ensemble $S$ de taille $n$, et un nombre $x$. Décrivez un algorithme
 efficace utilisant une HashTable pour trouver s’il existe une paire $(a, b)$
 avec $a \in S$, $b \in S$ telle que $a + b = x$. Quelle est la complexité de votre algorithme
-? Est-elle meilleure que votre solution qui utilisait un tri ? (Xavier)
+? Est-elle meilleure que votre solution qui utilisait un tri ? (Xavier)\\
+
+Concernant le bilan sur la mission sur les tris, la solution était de faire un tri efficace de l'ensemble $S$ (par exemple Quicksort) et ensuite de tester l'addition du premier élément $a$ avec le dernier élément $b$. Si le résultat de cette addition était inférieur à $x$, alors on testait l'addition de $(a+1)$ avec $b$, et ainsi de suite. Sinon si le résultat de l'addition était supérieur à $x$, alors on testait l'addition de $a$ avec $(b-1)$, et ainsi de suite.\\\\
+Pour résoudre le même problème avec une HashTable, on pourrait penser à insérer tous les éléments de l'ensemble $S$ dans une HashSet. Cette classe implémente l'interface Set, en utilisant une HashTable. HashSet est implémenté comme une HashMap, dont les clés sont les éléments du HashSet et les valeurs sont toutes une même valeur présente. Cette implémentation offre des performances constantes pour les opérations \textit{add(T t)}, \textit{remove(T t)}, \textit{contains(T t)} et \textit{size()}. Il suffira donc de vérifier si pour chaque élément $a$ de l'ensemble $S$, il existe $b$ dans la HashSet tel que $b = x - a$. La complexité de cet algorithme est donc de $O(1)$ + $O(n)$ (parcours des éléments de $S$). Ce qui est plus rapide que l'algorithme de la mission sur les tris.\\
+
 \item Démontrez que $(a + b)\%M$ est équivalent à $((a\%M) + b)\%M$. En quoi cette 
 propriété peut être utile pour construire une fonction de hachage sur les String.
 Expliquez comment Java calcule une fonction de hachage sur les String ? Quelle
