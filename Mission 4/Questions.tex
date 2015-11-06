@@ -129,10 +129,39 @@ $s[0]*31^{(n-1)} + s[1]*31^{(n-2)} + ... + s[n-1]$
 Dans cette fonction, le String $s$ a $n$ caractères. Elle calcule la somme des valeurs de chaque caractère, chacun multiplié par $31^{r}$ avec $r$ étant l'emplacement inversé du caractère dans le String. La complexité du calcul de hashcode d'un String est de $O(n)$ puisqu'il faut parcourir tous les caractères du String. Mais une fois ce calcul fait, il n'est plus nécessaire de recalculer le hashcode de ce String.\\
 
 \item
-\item 
-\item 
-\item
-\item 
+\item Java fournit la classe \texttt{java.util.Hashtable} comme implémentation de l'interface \texttt{java.util.Map}. Pouvez-vous déterminer précisément de quelle variante de table de hachage il s'agit ? Java fournit-il d'autres implémentations de l'interface \texttt{Map} ? Faites un diagramme qui représente les interfaces et les classes qui se rapportent à \texttt{Map} et précisez ce qui, dans chaque cas, les caractérise. Qu'est-ce qui peut servir de clef pour une \texttt{Hashtable} en Java ? Soyez précis. (Sundeep) \\
+
+Dans la classe \texttt{java.util.Hashtable} qui implémente l'interface \texttt{java.util.Map}, utilise la méthode du {separate chaining} pour la gestion des collisions dans la table de hachage. Plusieurs constructeurs sont mis à disposition. Le premier, ne prenant aucun paramètre et qui construit une nouvelle table de hachage avec une {capacité initiale} et un {facteur de charge} par défaut, qui sont respectivement {11} et {0.75}. Le second constructeur permet de choisir la {capacité initiale} et d'utiliser le {facteur de charge} par défaut. Le troisème, quant à lui, permet de choisir la {capacité initiale} et le {facteur de charge}. Cette version de la table de hachage proposée par \texttt{java.util.Hashtable} est synchronisée. Dans une HashTable, n'importe quel objet non-null peut être utilisé comme clé (ou valeur).
+
+Le diagramme de classe que nous avons dessiné se trouve en annexe, voir figure \ref{Diagramme de classe}. Nous avons délibérément ignoré les classes qui fournissaient des fonctionnalités qui n'avaient plus vraiment de lien avec un dictionnaire, et la classe \texttt{AbstractMap} qui aurait surchargé le schéma de flèches sans vraiment apporter d'information additionnelle.
+
+
+
+\item Qu'entend-on par la notion de collision dans une table de hachage ? Les collisions ont-elles une influence sur la complexité des opérations ? Si oui, quelle(s) opération(s) avec quelle(s) complexité(s), sinon précisez pourquoi. (Thomas)\\
+
+Le fait de créer une valeur de hachage à partir d'une clé peut engendrer un problème de « collision », c'est-à-dire que deux clés différentes, voire davantage, pourront se retrouver associées à la même valeur de hachage et donc à la même case dans le « tableau » (la fonction n'est pas injective). Pour diminuer les risques de collisions, il faut donc premièrement choisir avec soin sa fonction de hachage. Ensuite, un mécanisme de résolution des collisions sera à implémenter.\\
+Tout comme les tableaux ordinaires, les tables de hachage permettent un accès en O(1) en moyenne, quel que soit le nombre d'éléments dans la table. Toutefois, comme plusieurs données peuvent se trouver dans une même case, le temps d'accès dans le pire des cas peut être de O(n). Comparées aux autres tableaux associatifs, les tables de hachage sont surtout utiles lorsque le nombre d'entrées est très important
+
+
+
+
+
+\item Est-ce que le facteur de charge d'une table de Hashage. Est-ce que le contrôle du facteur de charge est nécessaire/optionnel pour le bon fonctionnement d'une table de Hashage avec Linear Probing ou Separate Chaining ? Quelle est la stratégie utilisé par \texttt{java.util.Hashtable} pour contrôler le facteur de charge ? En quoi est-elle différente de celle proposée dans \texttt{LinearProbinHashST} ? Quel est le lien entre le facteur de charge et collision ? (Sundeep) \\
+
+
+Le facteur de charge d'une table de hachage est le rapport entre le nombre d'élements présents dans cette table et le nombre de places libres. Il y a un lien direct entre la notion de collision et celle du facteur de charge. En effet, plus le facteur de charge augmente, plus le tableau est rempli et plus le risque de collision augmente, ce qui affectera donc directement les performances du programme. 
+
+Cela signifie donc que, quelle que soit la manière de gérer les collisions ({linear probing} ou {separate chaining}), il est nécessaire de bien contrôler le facteur de charge. Cependant, nous pourrons nous permettre un facteur de charge plus important dans le cas d'un {separate chaining} que dans le cas d'un {linear probing}, puisque le linear probing ne fonctionne plus du tout quand le load ratio atteint 1, et pour des valeurs proches de très longs clusters peuvent se former.
+
+La stratégie utilisée dans \texttt{java.util.Hashtable} est de fixer le facteur de charge et la taille initiale de la table de hachage à sa création. À chaque fois que le facteur de charge est atteint, la nouvelle taille de la table est calculée en doublant la taille précédente.
+
+La différence principale entre les stratégies de redimensionnement de \texttt{Hashtable} et \texttt{LinearProbingHashST} est que cette dernière redimensionne vers une taille plus petite quand la charge du tableau devient plus petite (quand le tableau est seulement un huitième plein). De cette manière, elle peut assurer que l'espace occupé par la table sera toujours proportionnel à son contenu.
+
+\item Imaginez une nouvelle méthode \texttt{iterator()} qui retourne un itérateur sur les clefs de \texttt{LinearProbingHashST}. Votre itérateur ne devrait pas accepter de modification de la table de hashage alors qu'il est utilisée :
+une \texttt{ConcurrentModificationException()} doit être lancée si c'est le cas. Que suggérez-vous pour ce faire ? Hint : Inspirez vous de la stratégie de \texttt{java.util.Hashtable}. (Thomas)\\
+
+Iterator() parcoura la table de Hashage des clés jusqu'à M, en retournant à chaque fois la clés attendu grâce a la méthode next(). Il est bien évident qu'il contiendra les méthodes hasnext() qui lui indiquera si il y a encore un élément à lire après. Toutefois, si lors de l'appel à la méthode next(), le flag de modification est mise à vrai, Iterator() enverra ConcurrentModificationException().
+
 \item 
 \item \textbf{Fonction de hash permettant de calculer le hachage du sous-string[i+1,...,i+n] en temps constant en connaissant le hachage du sous-string[i,...,i+n-1]}
 
