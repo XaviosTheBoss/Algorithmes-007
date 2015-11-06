@@ -8,6 +8,7 @@
 \usepackage[a4paper]{geometry}
 \usepackage{listings}
 \usepackage{amssymb}
+\usepackage{amsmath,amsfonts}
 	\lstset{frame=tb,
 		language=Java,
  		aboveskip=3mm,
@@ -97,7 +98,36 @@ Pour résoudre le même problème avec une HashTable, on pourrait penser à ins�
 \item Démontrez que $(a + b)\%M$ est équivalent à $((a\%M) + b)\%M$. En quoi cette 
 propriété peut être utile pour construire une fonction de hachage sur les String.
 Expliquez comment Java calcule une fonction de hachage sur les String ? Quelle
-est la complexité pour calculer 1 fois et N fois le hashcode d’un String. (Xavier)
+est la complexité pour calculer 1 fois et N fois le hashcode d’un String. (Xavier)\\
+
+Prenons G = $(a + b)\%M$ et D = $((a\%M) + b)\%M$.\\ 
+On doit démontrer que G = D.\\
+Nous pouvons écrire :
+\begin{center}
+a = M * Q1 + R1 where 0 $\le$ R1 < M où Q1 est un entier. a mod M = R1\\
+b = M * Q2 + R2 where 0 $\le$ R2 < M où Q2 est un entier. b mod M = R2\\
+(a + b) = M * (Q1 + Q2) + R1+R2 \\
+G = (a + b) mod M\\
+G = (M * (Q1 + Q2) + R1+ R2) mod M\\
+\end{center} 
+On peut supprimer les multiples de M lorsqu'on prend mod M,
+\begin{center}
+G = (R1 + R2) mod M\\
+D = (a mod M + b) mod M\\
+D = (R1 + R2) mod M\\
+\end{center}
+Et donc, 
+\begin{center}
+G = D = (R1 + R2) mod M\\
+\end{center}
+\vspace{1\baselineskip}
+Cette propriété est utile pour construire une fonction de hashage sur les String car il n'est pas nécessaire de calculer le modulo de chaque valeur des caractères du String. En effet, il suffira de calculer la somme de la valeur des caractères et utiliser une seule fois le modulo à la fin.\\\\
+La fonction de hashage pour un String est implémentée comme suit :
+\begin{center}
+$s[0]*31^{(n-1)} + s[1]*31^{(n-2)} + ... + s[n-1]$
+\end{center}
+Dans cette fonction, le String $s$ a $n$ caractères. Elle calcule la somme des valeurs de chaque caractère, chacun multiplié par $31^{r}$ avec $r$ étant l'emplacement inversé du caractère dans le String. La complexité du calcul de hashcode d'un String est de $O(n)$ puisqu'il faut parcourir tous les caractères du String. Mais une fois ce calcul fait, il n'est plus nécessaire de recalculer le hashcode de ce String.\\
+
 \item
 \item 
 \item 
