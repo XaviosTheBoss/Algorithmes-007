@@ -128,11 +128,20 @@ $s[0]*31^{(n-1)} + s[1]*31^{(n-2)} + ... + s[n-1]$
 \end{center}
 Dans cette fonction, le String $s$ a $n$ caractères. Elle calcule la somme des valeurs de chaque caractère, chacun multiplié par $31^{r}$ avec $r$ étant l'emplacement inversé du caractère dans le String. La complexité du calcul de hashcode d'un String est de $O(n)$ puisqu'il faut parcourir tous les caractères du String. Mais une fois ce calcul fait, il n'est plus nécessaire de recalculer le hashcode de ce String.\\
 
-\item
+\item Expliquez pourquoi la méthode hash() p461 de Algorithms-4 retourne\\
+$(x.hashCode() \& 0x7FFFFFFF) \% M$\\
+et pas simplement\\
+$x.hashCode() \% M?$
+Quel nombre représente $0x7FFFFFFF$ ? Quelle est sa représentation binaire ? Montrer l'exemple l'impact au niveau binaire sur un exemple où x.hashCode() retourne un nombre négatif. Hint : utilisez Integer.toBinaryString(int) pour vérifier votre réponse. (Thibaut) \\
+
+Le nombre 0x7FFFFFFF représente la valeur maximum d'un int sur 32 bit. Il représente 2147483647 et sa représentation binaire est  0111 1111 1111 1111 1111 1111 1111 1111 . \\ On renvoie ce nombre avec \& pour éviter que le nombre renvoyé soit négatif. En effet, \& implique un and logique. Or le premier chiffre du nombre sous forme binaire est 0.
+
+Ce bit est un bit permettant de savoir si le nombre est négatif ou positif. Par ce procédé, si le int renvoyé par x.hashcode est négatif  et donc son premier bit = 1) , le \& étant un and , 0 et 1 donnent 0 et donc les premier bit reste 0 quoi qu'il advienne. La valeur retournée est donc positive.
+
 \item Java fournit la classe \texttt{java.util.Hashtable} comme implémentation de l'interface \texttt{java.util.Map}. Pouvez-vous déterminer précisément de quelle variante de table de hachage il s'agit ? Java fournit-il d'autres implémentations de l'interface \texttt{Map} ? Faites un diagramme qui représente les interfaces et les classes qui se rapportent à \texttt{Map} et précisez ce qui, dans chaque cas, les caractérise. Qu'est-ce qui peut servir de clef pour une \texttt{Hashtable} en Java ? Soyez précis. (Sundeep) \\
 
 En Java, on a plusieurs implémentations de l'interface \texttt{java.util.Map} et vous trouverez ci-dessous un schéma simplifié avec les interfaces et les classes qui se rapportent à l'interface \texttt{java.util.Map}:
-\begin{figure}
+\begin{figure} [!h]
 \center
 \includegraphics[scale=0.8]{diag.png}
 \end{figure}
@@ -171,7 +180,13 @@ une \texttt{ConcurrentModificationException()} doit être lancée si c'est le ca
 
 Iterator() parcoura la table de Hashage des clés jusqu'à M, en retournant à chaque fois la clés attendu grâce a la méthode next(). Il est bien évident qu'il contiendra les méthodes hasnext() qui lui indiquera si il y a encore un élément à lire après. Toutefois, si lors de l'appel à la méthode next(), le flag de modification est mise à vrai, Iterator() enverra ConcurrentModificationException().
 
-\item 
+\item Décrivez l'implémentation de la méthode put(key) dans une table de hachage qui utilise la technique du linear probing pour gérer les collisions qui utiliserait un marqueur spécial pour représenter les entrées supprimées à l'aide de la méthode delete(key). En d'autres termes la méthode delete(key) au lieu de réarranger le contenu de la table de hachage de telle sorte qu'elle soit comme si l'entrée supprimée n'avait jamais été insérée, va simplement marquer l'entrée avec le marqueur spécial. Quelle est l'avantage ou l'inconvénient de cette approche par rapport à celle de LinearProbingHashST dans Algorithms-4 ? (Thibaut) \\
+
+La méthode put serait similaire à une méthode put utilisant un linear probing normal à la différence d'une vérification supplémentaire qui vérifie si la clé prise en argument n'est pas justement la clé mise par défaut lors d'un delete(key)
+L'avantage de cette approche est le gain de temps considérable lors d'un appel à delete(key) . En effet, au lieu de réarranger la totalité de la table, nous n'avons plus qu'à modifier la clé que nous voulons supprimer. 
+
+L'inconvénient est l'augmentation de l'allocation de la mémoire. En effet, les clés ayant toujours une valeur, la mémoire prise par la table augmente sans cesse et ne diminue pas avec des appel delete(key). On se retrouve aussi avec de nombreuses clés inutiles au milieu du tableau qui , lors de l'appel put ou get , ralentissent cet appel.
+
 \item \textbf{Fonction de hash permettant de calculer le hachage du sous-string[i+1,...,i+n] en temps constant en connaissant le hachage du sous-string[i,...,i+n-1]} (Alexis)\\
 
 Une fonction de hashage qui utilise une méthode de Horner peut permettre d'implémenter

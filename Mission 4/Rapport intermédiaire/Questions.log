@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.4.10)  6 NOV 2015 18:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.4.10)  9 NOV 2015 16:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -705,81 +705,98 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 132.
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1cmtt.fd
+Overfull \hbox (4.31737pt too wide) in paragraph at lines 131--136
+\T1/cmr/m/n/10.95 x.hashCode() re-tourne un nombre né-ga-tif. Hint : uti-li-sez
+ In-te-ger.toBinaryString(int)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 131--136
+
+ []
+
+[4]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 141.
+
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
-<diag.png, id=39, 482.80376pt x 298.11375pt>
+<diag.png, id=47, 482.80376pt x 298.11375pt>
 File: diag.png Graphic file (type png)
  <use diag.png>
-Package pdftex.def Info: diag.png used on input line 137.
+Package pdftex.def Info: diag.png used on input line 146.
 (pdftex.def)             Requested size: 386.24353pt x 238.49132pt.
- [4]
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
-
- []
-
-[5 <./diag.png>]
+ [5 <./diag.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
 
-Overfull \hbox (27.09116pt too wide) in paragraph at lines 169--171
+Underfull \hbox (badness 10000) in paragraph at lines 165--166
+
+ []
+
+[6]
+Overfull \hbox (27.09116pt too wide) in paragraph at lines 178--180
 \T1/cmr/m/n/10.95 de la table de ha-shage alors qu'il est uti-li-sée : une \T1/
 cmtt/m/n/10.95 ConcurrentModificationException()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--171
+Underfull \hbox (badness 10000) in paragraph at lines 178--180
 
  []
 
-[6]
-Overfull \hbox (27.38293pt too wide) in paragraph at lines 175--176
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+ []
+
+
+Overfull \hbox (27.38293pt too wide) in paragraph at lines 190--191
 []\T1/cmr/bx/n/10.95 Fonction de hash per-met-tant de cal-cu-ler le ha-chage du
  sous-string[i+1,...,i+n]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 213--221
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--206
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
-
- []
-
-[7] [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 278.
- [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 278.
+[8] [9]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 293.
+ [10]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 293.
  (./Questions.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 278.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 278.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 293.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 293.
 Package rerunfilecheck Info: File `Questions.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 278.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 293.
  ) 
 Here is how much of TeX's memory you used:
- 9633 strings out of 493117
- 134254 string characters out of 6135433
+ 9634 strings out of 493117
+ 134261 string characters out of 6135433
  317324 words of memory out of 5000000
  12885 multiletter control sequences out of 15000+600000
  17991 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,8n,40p,843b,2006s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,8n,40p,843b,2004s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
 /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
@@ -796,10 +813,10 @@ ve/2014/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/texlive
 4/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2014/
 texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2014/te
 xmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on Questions.pdf (9 pages, 363282 bytes).
+Output written on Questions.pdf (10 pages, 367706 bytes).
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
- 182 compressed objects within 2 object streams
- 91 named destinations out of 1000 (max. 500000)
+ 219 PDF objects out of 1000 (max. 8388607)
+ 185 compressed objects within 2 object streams
+ 92 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
