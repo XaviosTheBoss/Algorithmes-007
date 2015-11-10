@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=key
+comment0.target=java.lang.Object\ get(java.lang.Object)
+comment1.params=key\ hashCode
+comment1.target=java.lang.Object\ get(java.lang.Object,\ int)
+comment1.text=\ Same\ as\ 'get(key)',\ but\ instead\ of\ hashing\ 'key',\ the\ map\ will\ directly\ use\ 'hashCode'\ \r\nand\ check\ if\ there\ is\ indeed\ an\ entry\ with\ key\ 'key'
+comment2.params=key\ value
+comment2.target=void\ put(java.lang.Object,\ java.lang.Object)
+comment3.params=key\ value\ hashCode
+comment3.target=void\ put(java.lang.Object,\ java.lang.Object,\ int)
+comment3.text=\ Same\ as\ 'put(key,\ value)',\ but\ instead\ of\ hashing\ 'key',\ \r\nit\ will\ directly\ use\ 'hashCode'
+comment4.params=
+comment4.target=int\ size()
+comment5.params=key
+comment5.target=int\ hashCode(java.lang.Object)
+comment5.text=\ Returns\ the\ hash\ of\ the\ K\ 'key'\r\nComplexity\ required\ \:\ O(m)
+comment6.params=keyLength\ lastKeyChar\ lastHash\ lastChar
+comment6.target=int\ incrementalHashCode(int,\ int,\ int,\ int)
+comment6.text=\ Returns\ the\ hash\ of\ the\ key\ with\ length\ 'keyLength'\ and\ whose\ last\ character\ is\ 'lastKeyChar',\ \r\n\ based\ on\ the\ previous\ hash\ 'lastHash'\ and\ on\ the\ previous\ character\ leading\ the\ sentence\ 'lastChar'\ \r\nComplexity\ required\ \:\ O(1)
+numComments=7

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=capacity
+comment0.target=HashMap(int)
+comment0.text=Initialise\ une\ table\ vide\ de\ taille\ du\ double\ de\ 'capacity'
+comment1.params=key
+comment1.target=java.lang.Integer\ get(java.lang.String)
+comment2.params=key\ hashCode
+comment2.target=java.lang.Integer\ get(java.lang.String,\ int)
+comment3.params=key\ value
+comment3.target=void\ put(java.lang.String,\ java.lang.Integer)
+comment4.params=key\ value\ hashCode
+comment4.target=void\ put(java.lang.String,\ java.lang.Integer,\ int)
+comment5.params=
+comment5.target=int\ size()
+comment6.params=key
+comment6.target=int\ hashCode(java.lang.String)
+comment7.params=keyLength\ lastKeyChar\ lastHash\ lastChar
+comment7.target=int\ incrementalHashCode(int,\ int,\ int,\ int)
+numComments=8
