@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import java.io.*;
 import java.util.*;
@@ -23,4 +24,18 @@ public class Plagiarism implements PlagiarismInterface {
         HashMap map = new HashMap(this.fLength);
         return set;
     }
+=======
+import java.util.Map.Entry;
+import java.util.Set;
+
+
+public class Plagiarism implements PlagiarismInterface {
+
+	@Override
+	public Set<Entry<String, Integer>> detect(String doc) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+>>>>>>> origin/master
 }
