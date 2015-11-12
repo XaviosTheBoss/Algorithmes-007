@@ -9,5 +9,7 @@ public class Main {
     	System.out.println("coucou : "+map.get("coucou"));
     	System.out.println("hihi : "+map.get("hihi"));
     	System.out.println("lolo : "+map.get("lolo"));
+    	PlagiarismInterface p = new Plagiarism("corpus",3);
+    	p.detect("test");
     }
 }
