@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=folderpath\ w
+comment0.target=Plagiarism(java.lang.String,\ int)
+comment1.params=doc
+comment1.target=java.util.Set\ detect(java.lang.String)
+comment1.text=\ @pre\ \:\ 'doc'\ is\ the\ path\ to\ a\ text\ file\r\n\ @post\ \:\ searches\ for\ plagiarized\ sentences\ of\ at\ least\ 'w'\ characters\ between\ 'doc'\ and\ all\ text\ files\ in\ 'corpus'.\ \r\n\ returns\ a\ set\ of\ (document\ name,\ position)\ for\ each\ plagiarized\ sentence\ found\ in\ a\ corpus\ file\r\n('position'\ is\ the\ position\ of\ the\ first\ character\ of\ that\ sentence\ in\ the\ corpus\ file,\ starting\ at\ 0)
+numComments=2
