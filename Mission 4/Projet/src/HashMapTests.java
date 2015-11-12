@@ -69,6 +69,8 @@ public class HashMapTests {
         
         int hash4 = map2.incrementalHashCode( 8, lastKeyChar, hash3, lastChar);
         
+        assertEquals(map1.size(), map2.size());
+        
         assertEquals(hash1, hash3);
         
         assertEquals(hash2, hash4);

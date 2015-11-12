@@ -76,7 +76,7 @@ public class HashMap implements MapInterface<String, Integer> {
         int size = key.length();
         int j;
         for(j = 0; j < size; j++){
-            hash = (R*hash + key.charAt(j)) % M;
+            hash = (R*hash + java.lang.Character.getNumericValue(key.charAt(j))) % M;
         }
         return hash;
     }
@@ -104,10 +104,15 @@ public class HashMap implements MapInterface<String, Integer> {
     public int incrementalHashCode(int keyLength, int lastKeyChar, int lastHash, int lastChar) {
 
         int R = 10;
+        int RM = 1;
         
-        int quick_next_string_hash = (lastHash + M - (int)(Math.pow(R,keyLength-1))*lastKeyChar % M ) % M;
+        for(int i = 0 ; i<(keyLength-1); i++){
+            RM *= R;
+        }
         
-        quick_next_string_hash = (quick_next_string_hash*R + lastChar) % M; 
+        int quick_next_string_hash = (lastHash + M - RM*lastKeyChar % M) % M;
+        
+        quick_next_string_hash = (quick_next_string_hash*R + lastChar) % M;
         
         return quick_next_string_hash;
     }
