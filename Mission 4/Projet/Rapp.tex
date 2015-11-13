@@ -72,7 +72,7 @@ La fonction de hashage utilise une méthode de Horner et cela afin de pouvoir im
 Cette fonction calcul le hash associé au String passé en argument. Elle utilise la fonction getNumericValue de la librairie Character afin de faire la conversion entre les caractères et les int. Cela implique que les int passés en argument de la fonction incrementalHashCode doivent aussi être des caractères transformés en int via la fonction getNumericValue.
 
 \section{Fonction incrementalHashCode}
-cette fonction calcul le hash du mot décallé d'un caractère vers la droite sur base du hash précédent.\\
+Cette fonction calcul le hash du mot décallé d'un caractère vers la droite sur base du hash précédent.\\
 Par exemple, elle calcule le hash pour le mot "arginale" si vous lui donner la longueur des mots en cours (à savoir 8) en premier argument, la valeur numérique du premier caractère de marginal (à savoir celle de 'm') en deuxième argument, la valeur du hash du mot "marginal" en troisième argument et la valeur numérique du caractère "ajouté" en dernier argument.\\ 
 Comme expliqué dans la section précédente, les int passés en argument de la fonction incrementalHashCode doivent être des caractères transformés en int via la fonction getNumericValue.\\
 Cette fonction utilise le fait que la fonction hashCode utilise une méthode de Horner.\\Cela lui permet de retirer la contribution de la première lettre du mot précédent au hash du mot précédent et de lui ajouté la contribution du nouveau caractère afin d'obtenir le nouveau hash.\\
@@ -85,6 +85,17 @@ $$ (a+b)\,\bmod\,n = ((a\,\bmod\,n)+(b\,\bmod\,n))\,\bmod\,n $$
 On peut alors voir qu'on peut obtenir l'égalité suivante qui va nous permettre d'obtenir en une opération le hash du mot décallé sur base du hash du mot précédent une fois qu'on lui appliquera l'opération modulo adéquate : 
 $$ x_{i+1} = (x_i - t_i * R^{n-1}) * R + t_{i+n} $$
 Dans notre code cette opération a été séparée en deux une fois les opérations modulos appliquées. La première permettant de retirer la contribution du premier caractère et la deuxième d'ajouter celle du nouveau caractère. Pour la fonction hashCode() et incrementalHashCode(), nous utilisons le flag 0x7FFFFFFF afin de ne pas tomber sur un nombre négatif.
+\newpage
+\section{Améliorations}
+Il existe deux améliorations que nous pouvons apporter à notre projet pour diminuer la complexité :
+\begin{itemize}
+\item utiliser la méthode Rabin-Karp dans nos fonctions HashMap afin de résoudre le problème du Substring Pattern Matching en $O(n + k)$ expected au lieu de $O(n * k)$.
+\item construire une HashMap pour tous les documents du corpus et créer une méthode Comparable qui permettrait de comparer directement deux éléments dans deux HashMap distincts.
+\end{itemize}
+
+\section{Conclusion}
+Notre code marche localement (testé avec l'exemple de l'ennoncé). Cependant, sa complexité n'est pas assez optimisée pour passer au travers du Timeout sur la plateforme INGInious.
+
 \newpage
 \section*{Annexe}
 \begin{figure} [!h]
