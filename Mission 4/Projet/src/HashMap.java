@@ -112,7 +112,7 @@ public class HashMap implements MapInterface<String, Integer> {
         
         int quick_next_string_hash = (lastHash + M - RM*lastKeyChar % M) % M;
         
-        quick_next_string_hash = (quick_next_string_hash*R + lastChar & 0x7FFFFFFF) % M;
+        quick_next_string_hash = (quick_next_string_hash*R + lastChar) % M;
         
         return quick_next_string_hash;
     }
