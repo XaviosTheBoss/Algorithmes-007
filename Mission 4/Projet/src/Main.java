@@ -1,3 +1,8 @@
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
 
 public class Main {
 	public static void main(String[] args) {
@@ -9,7 +14,13 @@ public class Main {
     	System.out.println("coucou : "+map.get("coucou"));
     	System.out.println("hihi : "+map.get("hihi"));
     	System.out.println("lolo : "+map.get("lolo"));
-    	PlagiarismInterface p = new Plagiarism("corpus",3);
-    	p.detect("test");
+    	PlagiarismInterface p = new Plagiarism("corpus",10);
+    	
+    	Set<Map.Entry<String, Integer>> entry = p.detect("document.txt");
+    	Iterator<Entry<String, Integer>> it = entry.iterator();
+    	while (it.hasNext()) {
+    		Entry<String, Integer> tmp = it.next();
+    		System.out.println(tmp.getKey()+" "+tmp.getValue());
+    	}
     }
 }

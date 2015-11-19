@@ -6,7 +6,7 @@ public class HashMap implements MapInterface<String, Integer> {
     private String[] keys;   /*les clefs*/
     private Integer[] vals;  /*les valeurs*/
     
-    /*Initialise une table vide de taille du double de 'capacity'*/
+    /*Initialise une table vide de taille impaire*/
     public HashMap(int capacity) {
         int size = 2*capacity;
         for(int i = 2; i<Math.sqrt(3*capacity); i++){
@@ -76,7 +76,7 @@ public class HashMap implements MapInterface<String, Integer> {
         int size = key.length();
         int j;
         for(j = 0; j < size; j++){
-            hash = (R*hash + java.lang.Character.getNumericValue(key.charAt(j))) % M;
+            hash = (R*hash + java.lang.Character.getNumericValue(key.charAt(j))) & 0x7FFFFFFF % M;
         }
         return hash;
     }
@@ -112,7 +112,7 @@ public class HashMap implements MapInterface<String, Integer> {
         
         int quick_next_string_hash = (lastHash + M - RM*lastKeyChar % M) % M;
         
-        quick_next_string_hash = (quick_next_string_hash*R + lastChar) % M;
+        quick_next_string_hash = (quick_next_string_hash*R + lastChar) & 0x7FFFFFFF % M;
         
         return quick_next_string_hash;
     }
