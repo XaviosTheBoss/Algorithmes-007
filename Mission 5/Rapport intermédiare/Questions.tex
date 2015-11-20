@@ -63,7 +63,53 @@
 \item
 \item
 \item
-\item 
+\item Quels sont les avantages et inconvénients éventuels d’implémenter une file de
+priorité par un heap plutôt que par une liste ?
+Existe-t-il un tas T mémorisant 7 éléments distincts tel qu’un parcours infixe du
+tas renvoie les éléments de T en ordre décroissant ? Qu’en est-il avec un parcours
+préfixe ou post-fixe ?
+
+Les avantages sont une meilleure complexité calculatoire, 
+($log(n)$ pour les opérations de recherches et n pour les insertions avec n le nombre d'éléments stockés),
+une implémentation facile, un ordre partiel garanti. Les inconvénients sont une certaine
+rigidité (utilisation d'un tableau), une efficacité qui implique une absence de
+revérifications des propriétés du heap ce qui implique une grande vulnérabilité face à
+d'éventuelles attaques et une insertion qui n'est pas plus rapide que dans une file de
+priorités séquentielles.\\
+Passons maintenant à la deuxième partie de la question : \\
+Un binary heap respecte par définition la condition suivante : tous les noeuds qui sont plus proches de la racine qu'un certain noeud sont plus grand que celui-ci.
+Soit le binary heap suivant,
+$$ a[8] = {null, x_1, x_2, x_3, x_4, x_5, x_6, x_7} $$
+qu'on peut représenter via l'arbre binaire suivant :\\
+\begin{tikzpicture}
+  \node{$x_1$}
+   child {node {$x_2$}
+           child {node {$x_4$}}
+           child {node {$x_5$\ \ \ \ \ \ }}}
+   child {node {$x_3$}
+           child {node {\ \ \ \ \ \ $x_6$}}
+           child {node {$x_7$}}};
+\end{tikzpicture}\\
+Un parcours infixe de ce binary heap nous donne la suite suivante :
+$$ x_4 - x_2 - x_5 - x_1 - x_6 - x_3 - x_7 $$
+Il est impossible que cet ordre de retour soit un ordre décroissant car cela impliquerait que $ x_4  > x_2 $ ce qui va en contradiction avec la définition d'un binary heap. \\
+Un parcours préfixe de ce binary heap nous donne la suite suivante :
+$$ x_1 - x_2 - x_4 - x_5 - x_3 - x_6 - x_7 $$
+Cette ordre peut-être un ordre croissant sans violer la définition d'un binary heap. Par exemple : \\
+\begin{tikzpicture}
+  \node{$x_1 = 12$}
+   child {node {$x_2 = 11$}
+           child {node {$x_4 = 10$}}
+           child {node {$9$\ \ \ \ \ \ }}}
+   child {node {$x_3 = 8$}
+           child {node {\ \ \ \ \ \ $7$}}
+           child {node {$x_7 = 6$}}};
+\end{tikzpicture}\\
+
+Un parcours post-fixe de ce binary heap nous donne la suite suivante :
+$$ x_4 - x_5 - x_2 - ... $$
+Ce qui est impossible car la contrainte $ x_5 > x_2 $ viole la définition du binary heap.
+
 \item
 \item
 \item
