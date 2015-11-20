@@ -61,8 +61,14 @@
 \item
 \item
 \item
-\item
-\item
+\item Donnez la séquence des clefs dans le tableau qui résulte de l'insertion de la séquence des 3 clefs 48 30 et 84 dans la heap suivante (orienté vers le maximum) de taille 10 : 97 93 89 83 38 32 40 12 26 24
+
+97  93  89  83  48  84  40  12  26  24  38  32  30
+
+\item Donnez la séquence des clefs dans le tableau qui résulte de l'ajout des 3 opérations successives de suppression du maximum dans la heap suivante (orientée vers le maximum) de taille 10 : 98 96 84 34 62 31 72 13 27 33. votre réponse devrait être une séquence de 7 etiers.
+
+72  62  31  34  33  13  27
+
 \item Quels sont les avantages et inconvénients éventuels d’implémenter une file de
 priorité par un heap plutôt que par une liste ?
 Existe-t-il un tas T mémorisant 7 éléments distincts tel qu’un parcours infixe du
@@ -112,7 +118,9 @@ Ce qui est impossible car la contrainte $ x_5 > x_2 $ viole la définition du bi
 
 \item
 \item
-\item
+\item L'algorithme de construction d'un code de Huffman utilise une file de priorité. Est-il avantageux qu'il s'agisse d'une file de priorité adaptable ? pourquoi ? L'utilisation d'une file de priorité est elle indispensable pour pouvoir construire un code de Huffman ? pouvez-vous imaginer une autre solution en utilisant un algorithme de tri ? Sa complexité calculatoire serait-elles meilleure que l'algorithme original ? pourquoi ?
+
+L’algorithme de Huffman a besoin d’avoir un mécanisme de tri pour pouvoir donner un ordre d’importance aux lettres/mots qui ont la plus grande récurrence. De ce fait, en utilisant une file prioritaire, nous allons pouvoir assigner les lettres avec les plus de récurrence en debut de file, et ceux qui en ont moins en fin de file, via le mécanisme de priorité avec comme critère d’importance la récurrence des lettres. De ce fait, il sera triviale et facile d’assigner les préfixe par la suite. Une autre solution serait d’utiliser un Red-Black Tree à la place pour donner l’importance lettres/mots, toutefois le temps d’acces d’une Priority Queue est bien plus efficace ( O(1) ) que celui du Red Black Tree, Log (N), puisque dans le cas de la PQ, il suffira juste de retirer le max element
 
 \item Quelles sont les différentes étapes d’un algorithme de compression de texte qui
 prend en entrée un texte et fournit en sortie une version comprimée de ce texte à
