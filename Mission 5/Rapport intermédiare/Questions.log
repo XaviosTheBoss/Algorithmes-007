@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.2)  19 NOV 2015 15:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.2)  20 NOV 2015 03:18
 entering extended mode
 **Questions.tex
 (Questions.tex
@@ -653,45 +653,76 @@ Underfull \hbox (badness 10000) in paragraph at lines 71--76
 
  []
 
+<comptage.PNG, id=12, 361.35pt x 131.74219pt>
+File: comptage.PNG Graphic file (type png)
+ <use comptage.PNG>
+Package pdftex.def Info: comptage.PNG used on input line 82.
+(pdftex.def)             Requested size: 361.34912pt x 131.74185pt.
+ [2 <./comptage.PNG>] <arbre.PNG, id=37, 538.26094pt x 359.09157pt>
+File: arbre.PNG Graphic file (type png)
+ <use arbre.PNG>
+Package pdftex.def Info: arbre.PNG used on input line 89.
+(pdftex.def)             Requested size: 349.86546pt x 233.40674pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--76
+<constcode.PNG, id=38, 395.22656pt x 157.33781pt>
+File: constcode.PNG Graphic file (type png)
+ <use constcode.PNG>
+Package pdftex.def Info: constcode.PNG used on input line 94.
+(pdftex.def)             Requested size: 355.7006pt x 141.6027pt.
+
+<codearbre.PNG, id=39, 395.97937pt x 157.33781pt>
+File: codearbre.PNG Graphic file (type png)
+ <use codearbre.PNG>
+Package pdftex.def Info: codearbre.PNG used on input line 98.
+(pdftex.def)             Requested size: 356.37814pt x 141.6027pt.
+ [3 <./arbre.PNG> <./constcode.PNG>] <codetexte.PNG, id=47, 395.97937pt x 113.6
+7468pt>
+File: codetexte.PNG Graphic file (type png)
+
+<use codetexte.PNG>
+Package pdftex.def Info: codetexte.PNG used on input line 102.
+(pdftex.def)             Requested size: 356.37814pt x 102.30626pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 80.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 110.
+
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 80.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 110.
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--88
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--88
+Underfull \hbox (badness 10000) in paragraph at lines 109--118
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 90.
-[2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 90.
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
+
+ []
+
+[4 <./codearbre.PNG> <./codetexte.PNG>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 125.
+ [5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 125.
  (Questions.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 90.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 90.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 125.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 125.
 Package rerunfilecheck Info: File `Questions.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 125.
  ) 
 Here is how much of TeX's memory you used:
- 9130 strings out of 493673
- 128832 string characters out of 3141527
+ 9171 strings out of 493673
+ 129391 string characters out of 3141527
  249900 words of memory out of 3000000
- 12353 multiletter control sequences out of 15000+200000
- 15983 words of font info for 44 fonts, out of 3000000 for 9000
+ 12380 multiletter control sequences out of 15000+200000
+ 17231 words of font info for 49 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 29i,6n,40p,267b,484s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,6n,40p,1241b,645s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Xavier\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 \ecti1095.pk> <C:\Users\Xavier\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
 n\ec\dpi600\ecit1095.pk> <C:\Users\Xavier\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
@@ -702,10 +733,12 @@ ata\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\
 Xavier\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1200.pk>
  <C:\Users\Xavier\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
 crm1200.pk> <C:\Users\Xavier\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecbx1728.pk>
-Output written on Questions.pdf (2 pages, 113411 bytes).
+ec\dpi600\ecbx1728.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb>
+Output written on Questions.pdf (5 pages, 309443 bytes).
 PDF statistics:
- 285 PDF objects out of 1000 (max. 8388607)
- 16 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 348 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

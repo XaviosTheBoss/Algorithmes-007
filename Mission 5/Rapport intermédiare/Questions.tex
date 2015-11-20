@@ -72,7 +72,37 @@
 prend en entrée un texte et fournit en sortie une version comprimée de ce texte à
 l’aide d’un codage de Huffman ? Soyez précis dans votre description en isolant
 chaque étape du problème. Précisez notamment pour chaque étape les structures
-de données utiles et la complexité temporelle des opérations menées.\\\\
+de données utiles et la complexité temporelle des opérations menées. (Xavier)\\
+
+La méthode de Huffman consiste à remplacer les caractères les plus fréquents par des codes
+courts et les caractères les moins fréquents par des codes longs. La phase d’encodage se compose de trois étapes :
+\begin{enumerate}
+\item \textbf{Comptage des fréquences des caractères} : cette étape consiste à parcourir tous les caractères du texte et à calculer le nombre d'occurence de chaque lettre dans ce texte. Si $n$ est le nombre de caractères dans le texte, alors la complexité de cette étape est de $O(n)$.
+\begin{center}
+    \includegraphics{comptage.PNG}
+\end{center}
+\item \textbf{Construction du code préfixe} : Un code préfixe est un ensemble de mots tel qu’aucun mot de
+l’ensemble n’est préfixe d’un autre mot de l’ensemble. Un code préfixe sur l’alphabet binaire \{0, 1\} peut être représenté par
+un tri qui est un fait un arbre binaire dont tous les nœuds internes ont exactement deux successeurs. Les feuilles sont étiquetées avec les caractères originaux, les branches par 0 ou 1 et les chemins depuis la racine jusqu’aux feuilles épellent les codes des caractères originaux. L’utilisation d’un code préfixe assure que les codes sont bien représentés par les feuilles. Par convention, le fils gauche d’un nœud est étiqueté par 0 et le fils droit
+par 1.
+\begin{center}
+    \includegraphics[scale=0.65]{arbre.PNG}
+\end{center}
+\item \textbf{Codage du texte} : Après la construction de l’arbre, il est possible de retrouver le code de
+chaque caractère par un parcours en profondeur de l’arbre. 
+\begin{center}
+    \includegraphics[scale=0.90]{constcode.PNG}
+\end{center}
+Cette étape nécessite de stocker les codes de chaque caractère avant le code du texte.
+\begin{center}
+    \includegraphics[scale=0.90]{codearbre.PNG}
+\end{center}
+On peut ensuite coder le texte.
+\begin{center}
+    \includegraphics[scale=0.90]{codetexte.PNG}
+\end{center}
+La complexité de cette étape est le la complexité d'un parcours d'un arbre binaire, c'est-à-dire en $O(n log(n))$.\\
+\end{enumerate}
 
 \item
 
@@ -84,7 +114,12 @@ précise notamment que \textit{si le nombre de bits déjà écrits ne correspond
 multiple de 8 (un octet), des bits à 0 sont écrits pour compléter l’octet courant}.
 Quand la situation décrite peut-elle se présenter ? Quelle est la conséquence de
 cette postcondition sur votre programme de compression de texte ? Quelle est la
-conséquence de cette postcondition sur votre programme de décompression ?\\\\
+conséquence de cette postcondition sur votre programme de décompression ? (Xavier)\\
+
+Les classes \texttt{\textbf{InputBitStream}} et \texttt{\textbf{OutputBitStream}} ont pour but de lire et d'écrire des bits, dont l'entrée et la sortie standard sont orientés vers les flux de caractères encodés en Unicode. La valeur d'un $int$ sur la sortie standard est une séquence de caractères (représentation décimale), tandis que la valeur d'un $int$ sur \texttt{\textbf{OutputBitStream}} est une séquence de bits (représentation binaire). Ces classes  fondent leur I/O sur 8-bit bytestreams. Les données sur l'entrée standard ne sont pas nécessairement alignés sur les frontières d'octets. La méthode \texttt{\textit{close}} n'est pas indispensable mais, pour une terminaison propre, les utilisateurs devraient appeler \texttt{\textit{close}} pour indiquer qu'il n'y a plus de bits à lire (pour la compression). Pour la décompression, la méthode \texttt{\textit{close}} est essentielle. En effet, les utilisateurs doivent appeler \texttt{\textit{close}} pour veiller à ce que tous les bits spécifiés avec les appels \texttt{\textit{write}} s'écrivent dans la $bitstream$ et que le dernier octet se remplisse avec des 0 afin que output s'aligne avec le système de fichiers.\\
+
+\item
+\item
 
 \end{enumerate}
 \end{document}
