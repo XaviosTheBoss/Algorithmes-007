@@ -165,7 +165,19 @@ conséquence de cette postcondition sur votre programme de décompression ? (Xav
 Les classes \texttt{\textbf{InputBitStream}} et \texttt{\textbf{OutputBitStream}} ont pour but de lire et d'écrire des bits, dont l'entrée et la sortie standard sont orientés vers les flux de caractères encodés en Unicode. La valeur d'un $int$ sur la sortie standard est une séquence de caractères (représentation décimale), tandis que la valeur d'un $int$ sur \texttt{\textbf{OutputBitStream}} est une séquence de bits (représentation binaire). Ces classes  fondent leur I/O sur 8-bit bytestreams. Les données sur l'entrée standard ne sont pas nécessairement alignés sur les frontières d'octets. La méthode \texttt{\textit{close}} n'est pas indispensable mais, pour une terminaison propre, les utilisateurs devraient appeler \texttt{\textit{close}} pour indiquer qu'il n'y a plus de bits à lire (pour la compression). Pour la décompression, la méthode \texttt{\textit{close}} est essentielle. En effet, les utilisateurs doivent appeler \texttt{\textit{close}} pour veiller à ce que tous les bits spécifiés avec les appels \texttt{\textit{write}} s'écrivent dans la $bitstream$ et que le dernier octet se remplisse avec des 0 afin que output s'aligne avec le système de fichiers.\\
 
 \item
-\item
+\item [Question liée spécifiquement au problème posé] Quel est le taux de compression
+observé sur différents fichiers de texte ? Ce taux de compression dépend-il
+de la taille du fichier ? Y a-t-il d’autres paramètres qui influencent ce taux de
+compression ? Décrivez précisément les différents essais que vous aurez effectués
+avec vos programmes de compression et de décompression de texte.
+Quel est le temps de réponse moyen de votre programme de compression en
+fonction de la taille du fichier de texte ? Quel est le temps de réponse moyen de
+votre programme de décompression en fonction de la taille du fichier comprimé ?
+Les temps calcul observés sont-ils cohérents avec la complexité temporelle
+des algorithmes de compression/décompression ? Argumentez.
+
+Cette question nécessite que notre implémentation du problème soit faite. 
+Elle sera donc faite avec la deuxième partie du projet.
 
 \end{enumerate}
 \end{document}
