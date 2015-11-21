@@ -1,16 +1,16 @@
 import java.io.*;
 
 /**
- * Court programme donnant un exemple d'ecriture et lecture 
- * avec des flux "bit ï¿½ bit".
+ * Court programme donnant un exemple d'écriture et lecture 
+ * avec des flux "bit à bit".
  * 
- * L'intï¿½rï¿½t des flux "bit ï¿½ bit" est principalement de permettre de lire
- * et ï¿½crire des boolï¿½ens dans un fichier en n'utilisant que la place nï¿½cessaire,
- * c'est-ï¿½-dire UN SEUL BIT par boolï¿½en.
- * Note : une exception ï¿½ cette rï¿½gle est dï¿½crite dans la spï¿½cification de OutputBitStream.close()
+ * L'intérêt des flux "bit à bit" est principalement de permettre de lire
+ * et écrire des booléens dans un fichier en n'utilisant que la place nécessaire,
+ * c'est-à-dire UN SEUL BIT par booléen.
+ * Note : une exception à cette règle est décrite dans la spécification de OutputBitStream.close()
  *
- * Pour faciliter l'ï¿½criture d'autres types primitifs, p.ex. char ou int, des mï¿½thodes
- * supplï¿½mentaires sont ï¿½galement prï¿½vues pour lire/ï¿½crire ces types.
+ * Pour faciliter l'écriture d'autres types primitifs, p.ex. char ou int, des méthodes
+ * supplémentaires sont également prévues pour lire/écrire ces types.
  *
  * Exemple d'utilisation :
  * java ExampleBitStream monFichier 1234678 1 0 0 1 0
@@ -31,20 +31,20 @@ public class ExampleBitStream {
   public static void main (String [] args) {
     if (args.length >= 2) {
       try {
-	String filename = args[0];  // fichier binaire qui sera ï¿½crit et ensuite relu 
-	int ivalue = Integer.parseInt(args[1]); // second argument interprï¿½tï¿½ comme un entier
+	String filename = args[0];  // fichier binaire qui sera écrit et ensuite relu 
+	int ivalue = Integer.parseInt(args[1]); // second argument interprété comme un entier
 
 	// Ouverture du flux de sortie
 	OutputBitStream out = new OutputBitStream(filename);
 
-	// Ecriture bit ï¿½ bit de l'entier lu (32 bits ï¿½crits)
+	// Ecriture bit à bit de l'entier lu (32 bits écrits)
 	out.write(ivalue);
 
-	// Lecture des arguments restants, chacun ï¿½tant interprï¿½tï¿½ comme un bit 
+	// Lecture des arguments restants, chacun étant interprété comme un bit 
 	for (int i=2; i<args.length;i++) {
 	  // On suppose que l'argument suivant est un entier
-          // Si l'entier est non nul, il est interprï¿½tï¿½ comme un bit ï¿½ 1
-          // Sinon, il est interprï¿½tï¿½ comme un bit ï¿½ 0
+          // Si l'entier est non nul, il est interprété comme un bit à 1
+          // Sinon, il est interprété comme un bit à 0
 	  boolean b = (Integer.parseInt(args[i])!=0) ? BIT_1 : BIT_0;
 	  // Ecriture du bit suivant correspondant au boolean b
 	  out.write(b);
@@ -55,7 +55,7 @@ public class ExampleBitStream {
 
 	/* --------------------------------------------------- */
 
-	// Ouverture d'un flux d'entrï¿½e
+	// Ouverture d'un flux d'entrée
 	InputBitStream in = new InputBitStream(filename);
 
 	// Lecture et impression de l'entier lu
@@ -63,12 +63,12 @@ public class ExampleBitStream {
 
 	// Lecture 
 	try {
-	  // Lecture bit ï¿½ bit du flux d'entrï¿½e et impression du bit lu
+	  // Lecture bit à bit du flux d'entrée et impression du bit lu
 	  while (true) {
 	    boolean resu = in.readBoolean();
 	    System.out.print (resu ? 1 : 0); 
 	  }
-	} catch (IOException e) { // Exception lancï¿½e notamment en fin de fichier
+	} catch (IOException e) { // Exception lancée notamment en fin de fichier
 	  System.out.println("");
 	  in.close();
 	}
