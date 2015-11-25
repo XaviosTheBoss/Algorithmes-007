@@ -10,51 +10,49 @@ import java.util.Arrays;
 public final class Decompress {
 	
 	public static void main(String[] args) throws IOException {
-		// Show what command line arguments to use
-		if (args.length == 0) {
-			System.err.println("Usage: java AdaptiveHuffmanDecompress InputFile OutputFile");
+		/*Verification des arguments*/
+		if (args.length < 2) {
+			System.err.println("Le programme a besoin de deux fichiers en arguments");
 			System.exit(1);
-			return;
 		}
 		
-		// Otherwise, decompress
-		String inputFile = args[0];
+		/*Decompression*/
 		File outputFile = new File(args[1]);
-		
-		InputBitStream in = new InputBitStream(inputFile);
-		OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFile));
+		InputBitStream input = new InputBitStream(args[0]);
+		OutputStream output = new BufferedOutputStream(new FileOutputStream(outputFile));
 		try {
-			decompress(in, out);
+			decompress(input, output);
 		} finally {
-			out.close();
-			in.close();
+			output.close();
+			input.close();
 		}
 	}
 	
-	
-	static void decompress(InputBitStream in, OutputStream out) throws IOException {
-		int[] initFreqs = new int[257];
-		Arrays.fill(initFreqs, 1);
-		
-		FrequencyTable freqTable = new FrequencyTable(initFreqs);
-		HuffmanDecoder dec = new HuffmanDecoder(in);
-		dec.codeTree = freqTable.buildCodeTree();
+	static void decompress(InputBitStream input, OutputStream output) throws IOException {
+		int[] initTable = new int[257];
+		Arrays.fill(initTable, 1);
+		/*Initialisation de la table de frequence*/
+		FrequencyTable freqTable = new FrequencyTable(initTable);
+		HuffmanDecoder decoder = new HuffmanDecoder(input);
+		decoder.codeTree = freqTable.buildCodeTree();
 		int count = 0;
+		
 		while (true) {
-			int symbol = dec.read();
-			if (symbol == 256)  // EOF symbol
+			int symbol = decoder.read();
+			/*Fin du fichier*/
+			if (symbol == 256)
 				break;
-			out.write(symbol);
-			
+			output.write(symbol);
 			freqTable.increment(symbol);
 			count++;
-			if (count < 262144 && isPowerOf2(count) || count % 262144 == 0)  // Update code tree
-				dec.codeTree = freqTable.buildCodeTree();
-			if (count % 262144 == 0)  // Reset frequency table
-				freqTable = new FrequencyTable(initFreqs);
+			/*Mise a jour du code tree*/
+			if (count < 262144 && isPowerOf2(count) || count % 262144 == 0)  
+				decoder.codeTree = freqTable.buildCodeTree();
+			/*Reinitialisation de la table de frequence*/
+			if (count % 262144 == 0) 
+				freqTable = new FrequencyTable(initTable);
 		}
 	}
-	
 	
 	private static boolean isPowerOf2(int x) {
 		return x > 0 && (x & -x) == x;
@@ -64,32 +62,26 @@ public final class Decompress {
 
 class HuffmanDecoder {
 	
+	public static final boolean BIT_1 = true;
+	public static final boolean BIT_0 = false;
 	private InputBitStream input;
-	
-	// Must be initialized before calling read().
-	// The code tree can be changed after each symbol decoded, as long as the encoder and decoder have the same code tree at the same time.
 	public CodeTree codeTree;
-	
-	
 	
 	public HuffmanDecoder(InputBitStream in) {
 		if (in == null)
-			throw new NullPointerException("Argument is null");
+			throw new NullPointerException("L'argument est null");
 		input = in;
 	}
 	
-	
-	
 	public int read() throws IOException {
 		if (codeTree == null)
-			throw new NullPointerException("Code tree is null");
-		
+			throw new NullPointerException("Le code tree est null");
 		InternalNode currentNode = codeTree.root;
 		while (true) {
 			boolean temp = input.readBoolean();
 			Node nextNode;
-			if      (temp == false) nextNode = currentNode.leftChild;
-			else if (temp == true) nextNode = currentNode.rightChild;
+			if (temp == BIT_0) nextNode = currentNode.leftChild;
+			else if (temp == BIT_1) nextNode = currentNode.rightChild;
 			else throw new AssertionError();
 			
 			if (nextNode instanceof Leaf)
