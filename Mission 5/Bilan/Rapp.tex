@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage[bookmarks={true},bookmarksopen={true}]{hyperref}
+\usepackage{graphicx}
+\usepackage[a4paper]{geometry}
+\usepackage{listings}
+	\lstset{frame=tb,
+		language=Java,
+ 		aboveskip=3mm,
+  		belowskip=3mm,
+  		showstringspaces=false,
+  		columns=flexible,
+  		basicstyle={\small\ttfamily},
+  		numbers=none,
+ 		numberstyle=\tiny\color{gray},
+  		keywordstyle=\color{blue},
+  		commentstyle=\color{dkgreen},
+  		stringstyle=\color{mauve},
+  		breaklines=true,
+  		breakatwhitespace=true
+  		tabsize=3
+	}
+\pagestyle{plain}
+\setlength{\parindent}{5mm}
+\usepackage{amsmath}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+
+
+\title{\textbf{Projet LSINF1121 -  Algorithmique et structures de données\\ - \\ Bilan Mission 5} \\ {\large Groupe 26}}
+\author{Laurian \bsc{Detiffe} \\(6380-12-00)\and Sundeep \bsc{Dhillon} \\(6401-11-00)\and Alexis \bsc{Macq} \\ (5910-12-00) \and Xavier \bsc{Pérignon} \\ (8025-11-00)\and Thibaut \bsc{Piquard}\\(4634-13-00)\and Thomas \bsc{Wyckmans} \\ (3601-12-00)}
+\date{date}
+\date{\vspace*{25mm}
+\includegraphics[scale=0.75]{logo.jpg}\\
+		\vspace*{30mm}
+		\begin{center}
+		Année académique 2015-2016 \\	
+		\end{center}}
+
+\begin{document}
+\thispagestyle{empty}
+
+\maketitle
+\thispagestyle{empty}
+%\tableofcontents
+%\setcounter{tocdepth}{3}
+%\setcounter{page}{1}
+%\newpage
+
+\section*{Questions et réponses}
+\begin{enumerate}
+\item Dans la technique de compression par un codage de Huffman, il s'avère utile d'inclure dans le fichier comprimé une entête contenant l'information nécessaire au décodage de ce fichier. De quelle information s'agit-il ? Proposez au moins trois alternatives en précisant la nature de l'information et son mode de représentation dans le fichier comprimé. Discutez des avantages et inconvénients de ces alternatives.\\
+{\color{dkgreen} On a besoin de l'arbre pour décompresser. Du coup, on encode notre arbre (ou table de fréquence) dans un fichier en sachant quel caractère correspond à quel symbole et cela, ça dépend de la structure dans notre arbre. On doit juste connaître la structure et quel symbole est dans quel leaf.}
+
+\item {Peut-on gagner encore en taux de compression si l'on réapplique l'algorithme de compression de Huffman sur un fichier déjà comprimé une première fois ? Que se passe-t-il dans ce cas ? Cela ouvre-t-il la porte vers un algorithme de compression récursif et optimal ?}\\
+{\color{dkgreen} Non, on ne peut pas gagner en taux de compression en réappliquant l'algorithme de compression de Huffman sur un fichier déjà comprimé une première fois. Dans ce cas, cela n'ouvre pas la porte vers un algorithme de compression récursif et terminal ! Cela est dû au fait que l'on va retomber sur exactement la même table de Huffman en exécutant l'algorithme. (A CHANGER)\\
+Si on prend un texte avec "ababababababab", on peut représenter un a par 0 et b par 1. Ensuite, quand on compresse avec Huffman, on prend les 8 premiers bits "01010101" et on peut les compresser. On peut compresser tant qu'il y a plusieurs occurrences d'un même caractère et théoriquement, à force, on arrivera à un point où on ne pourra plus compresser.\\}
+
+
+\item Quel est, approximativement, le taux de compression obtenu si l'on applique l'algorithme de compression de Huffman sur un un fichier comportant une seule chaîne composée du caractère \textbf{\texttt{a}} répété un million ($\approx 2\up{20}$) de fois, suivi du caractère \textbf{\texttt{b}} présent une seule fois ?\\
+{\color{dkgreen} Vu qu'il n'y a que deux caractères, on peut l'écrire sur 2 bits: a serait 0 et b serait 1.}\\
+Le taux de compression obtenu varie-t-il avec la longueur du fichier (par exemple, si le caractère a est répété deux millions de fois) ?\\
+{\color{dkgreen} La taux de compression serait de 1/8.}\\
+A votre avis, quel est le nombre minimal de bits nécessaires pour représenter sous forme comprimée ce fichier ? \\
+{\color{dkgreen} Du coup, on sait l'écrire sur un million et un.  }\\
+Peut-on adapter la technique de compression par un codage de Huffman en mesurant la fréquence d'autre chose que les caractères présents ? \\
+{\color{dkgreen}   }\\
+Peut-on utiliser une autre technique de compression qui serait plus efficace dans ce cas particulier ? \\
+{\color{dkgreen}  }
+
+
+\item Imaginez une implémentation d'une file de priorité par un tas (heap, en anglais) à l'aide d'une structure chaînée pour représenter l'arbre binaire essentiellement complet correspondant au tas. Combien de liens sont nécessaires dans chaque noeud ? Ecrivez le code des méthodes \textit{insert}, \textit{delMax}. Quelle en est la complexité ? Est-il utile de donner la taille maxN dans le constructeur ? \\
+{\color{dkgreen}   }
+
+\item Proposez une structure de données qui supporterait les opérations suivantes en temps logarithmique :\begin{enumerate}
+\item \textit{insertion}:
+{\color{dkgreen}   }
+
+\item \textit{supprimer le maximum}:
+{\color{dkgreen}   }
+
+\item \textit{supprimer le minimum}:
+{\color{dkgreen}   }
+
+\item les opérations suivantes en temps constant : \textit{trouver le maximum}:
+{\color{dkgreen}   }
+
+\item \textit{trouver le minimum}:
+{\color{dkgreen}   }
+\end{enumerate} 
+
+\item Imaginez une structure de données qui supporte:
+\begin{enumerate}
+\item L'insertion en temps logarithmique:
+{\color{dkgreen}  d }
+
+\item L'opération \textit{trouver la médiane} en temps constant:
+{\color{dkgreen} Queue   }
+
+\item \textit{supprimer la médiane} en temps logarithmique:
+{\color{dkgreen}   }
+\end{enumerate}
+\end{enumerate}
+\end{document}
