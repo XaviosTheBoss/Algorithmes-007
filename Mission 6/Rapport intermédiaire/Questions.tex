@@ -73,7 +73,7 @@
 
 \item Afin de compléter le MST partiel et retrouver un MST complet dans le graphe G, je vais appliquer l’algorithme de Kruskal. Cet algorithme est simple, il récupère tous les Lien (Edge) triés de manière croissante (plus petit poids au plus grand) et va ajouter au fur et à mesure tous ceux qui ne forme pas de cycle :
 \\
-\begin {verbatim}
+\begin{lstlisting}
 Public static void RecoverMST(EdgeWeightedGraph G, Queue<Edge>, UF uf)
 {
 	MinPQ<Edge> pq = new MinPQ<Edge>(G.edges());
@@ -86,7 +86,7 @@ Public static void RecoverMST(EdgeWeightedGraph G, Queue<Edge>, UF uf)
 		mst.enqueue(e);				//Add edge to mst
 	}
 }
-\end {verbatism}
+\end{lstlisting} 
 
 \url{http://algs4.cs.princeton.edu/43mst/KruskalMST.java.html}
 \\
