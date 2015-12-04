@@ -90,6 +90,7 @@ Public static void RecoverMST(EdgeWeightedGraph G, Queue<Edge>, UF uf)
 
 \url{http://algs4.cs.princeton.edu/43mst/KruskalMST.java.html}
 \\
+\\
 Cet algorithme se base sur une règle fondamentale du MST, il nepeut y avoir de cycle à l’intérieur d’un MST. Grâce à « union-find », on peut savoir si deux somments sont déjà connectés ou non, et s’il faut donc traiter cet Edge (l’ajouter au MST).
 \\
 Il est aussi possible de régénérer l’union-find depuis le MST existant, simplement en parcourant celui-ci et en liant chacun des différents sommets dans chacune des liants de ce MST partiel.
