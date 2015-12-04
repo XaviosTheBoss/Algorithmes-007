@@ -76,7 +76,24 @@
 
 \item 
 
-\item 
+\item Soit le graphe suivant :\\
+
+\begin{figure}[h!]
+    \center
+    \includegraphics[width=5cm]{graph.png}
+    \caption{Graphe contenant un cycle de longueur impaire (w-z-x)}
+\end{figure}\\
+
+En empruntant le cycle w-z-x une infinité de fois, on sait montrer que 
+la distance minimale entre y et w est $ -\infty $ 
+or en appliquant l'algorithme de Dijkstra, 
+on ne peut relaxé qu'une fois chaque noeud ce qui implique qu'on ne peut parcourir
+le cycle w-z-x de longueur négative qu'une et une seule fois et l'algorithme 
+de Dijkstra ne pourra donc pas nous permettre d'obtenir la solution optimale,
+ à savoir $ -\infty $. Il gardera toutefois la même complexité puisqu'en appliquant 
+ l'algorithme de Dijkstra, on ne peut relaxé qu'une seule fois chaque noeud.\\
+
+(Alexis)\\
 
 \item Soit $G$ un graphe avec des poids potentiellement négatif mais il n’y a pas de
 cycle négatif. Je cherche le chemin le plus court entre un noeud $u$ et un noeuds $v$.
