@@ -59,11 +59,18 @@
 \section*{Questions et réponses}
 \begin{enumerate}
 
-\item
+\item \textit{Quelles sont structures de données alternatives pour représenter un graphe G
+non dirigé comportant n noeuds (vertex) et m arcs (edges). Quelles sont les
+complexités des opérations élémentaires \texttt{Iterable <Integer> adj(int
+v) et addEdge(int v, int w)}.} (Sundeep)\\
 
-\item  
+\item \textit{Un graphe est biparti si ses noeuds peuvent être divisés en deux ensembles disjoints de sorte qu’il n’existe pas d’arc entre deux noeuds du même ensemble.
+Proposez une méthode pour tester si un graphe est biparti et si oui qui trouverait
+une telle partition. Quelle est la complexité de votre algorithme ? Hint : utilisez
+un DFS.}(Sundeep)\\
 
-\item 
+\item \textit{Prouvez que tout graphe connecté a un noeud dont le retrait (y comprit des arcs incidents) ne déconnecterait pas le graphe. Ecrivez une méthode qui trouve un
+tel noeud. Hint : utilisez un DFS et le marquage des noeuds.} (Sundeep)\\
 
 \item 
 
@@ -97,18 +104,16 @@ Il est aussi possible de régénérer l’union-find depuis le MST existant, sim
 La complexité temporelle de cette méthode est de O(Elog(E)).
 
 \item On peut élargir ce problème à un problème de MST plus vaste, c’est-à-dire : comment mettre à jour votre MST après un Edge quelconque  ait été mis à jour dans votre Graphe ? \\
-Il y a plusieurs cas possible : \\
-
-	\begin{enumerate}
+Il y a plusieurs cas possible :
+\begin{enumerate}
 	
 	\item L’edge mis à jour est dans votre MST et sa valeur décroît : il n’y a strictement rien à faire.
 	\item L’edge mis à jour n’appartient pas au MST et sa valeur décroît : il faut ajouter l’Edge dans le MST, ce qui créera un 		cycle au sein du MST. Il suffit ensuite de parcourir le MST depuis un des deux Vertice de cet Edge (via BFS ou DFS) et 			retirer dans ce cycle l’Edge au poids le plus haut (Complexité O(N)).
-	\item L’Edge mis à jour est dans votre MST et sa valeur croît : il faut retirer  l’Edge de cet MST, ce qui créera deux 			éléments connectés qui doivent être raccordés. On peut facilement calculer ces deux composants via DFS ou BFS (Complexité O		(N)), il faut ensuite parcourir les Edge restants par ordre croissant et ajouter le premier Edge qui relie les deux 			éléments connectés.
+	\item L’Edge mis à jour est dans votre MST et sa valeur croît : il faut retirer  l’Edge de cet MST, ce qui créera deux éléments connectés qui doivent être raccordés. On peut facilement calculer ces deux composants via DFS ou BFS (Complexité O	(N)), il faut ensuite parcourir les Edge restants par ordre croissant et ajouter le premier Edge qui relie les deux éléments connectés.
 	\item L’Edge mis à jour ne fait pas partie du MST et sa valeur croît : Le MST actuel est toujours un MST.
 	
 	\end{enumerate}
-\\
-Maintenant, ces diffétents cas ne couvrent pas spécifiquement notre probléme tel que je le comprends, c’est-à-dire, inclure quoi qu’il arrive l4Edge e même si celui-ci ne devrait pas se trouver dans le MST. Pour arriver à résoudre ce problème, il suffit de tweaker un petit peu le cas 2. Au moment du retrait du poids le plus haut, si celui-ci est l’Edge e, alors on retirera le second plus haut.
+Maintenant, ces différents cas ne couvrent pas spécifiquement notre problème tel que je le comprends, c’est-à-dire, inclure quoi qu’il arrive l4Edge e même si celui-ci ne devrait pas se trouver dans le MST. Pour arriver à résoudre ce problème, il suffit de tweaker un petit peu le cas 2. Au moment du retrait du poids le plus haut, si celui-ci est l’Edge e, alors on retirera le second plus haut.
 
 
 \item Oui, en utilisant une priority queue qui contiendrait les noeuds candidats à la prochaine
@@ -142,8 +147,7 @@ Le bottleneck dans cet algorithme est le nombre de comparaisons entre clefs des 
     \center
     \includegraphics[width=5cm]{graph.png}
     \caption{Graphe contenant un cycle de longueur impaire (w-z-x)}
-\end{figure}\\
-
+\end{figure}
 En empruntant le cycle w-z-x une infinité de fois, on sait montrer que 
 la distance minimale entre y et w est $ -\infty $ 
 or en appliquant l'algorithme de Dijkstra, 
@@ -155,13 +159,13 @@ de Dijkstra ne pourra donc pas nous permettre d'obtenir la solution optimale,
 
 (Alexis)\\
 
-\item Soit $G$ un graphe avec des poids potentiellement négatif mais il n’y a pas de
+\item \textit{Soit $G$ un graphe avec des poids potentiellement négatif mais il n’y a pas de
 cycle négatif. Je cherche le chemin le plus court entre un noeud $u$ et un noeuds $v$.
 J’ai à ma disposition une implémentation de Dijkstra qui ne permet pas de gérer
 les poids négatifs. Il me suffit dès lors d’augmenter tous les poids d’une même
 quantité correspondant a la valeur absolue du plus petit poids et d’appliquer
 Dijkstra sur ce graphe. Cette méthode est-elle valable ? Si non, montrez un contre
-exemple. (Xavier)\\
+exemple.} (Xavier)\\
 
 Non, c'est méthode n'est pas valable. Par exemple, considérons le graphe où il existe deux chemins de A vers B, l'un traversant un seul arc de longueur 2, et l'autre traversant des arcs de longueur 1, 1 et -2. Le deuxième chemin est plus court, mais si on augmente de 2 tous les poids des arcs (valeur absolue du plus petit poids), le premier chemin a maintenant une longueur de 4, et le second a une longueur de 6, inversant le chemin le plus courts.
 \begin{center}
@@ -169,13 +173,13 @@ Non, c'est méthode n'est pas valable. Par exemple, considérons le graphe où i
 \end{center}
 Cette méthode ne fonctionnera que si tous les chemins possibles entre les deux noeuds utilisent le même nombre d'arcs.\\
 
-\item Soit $G$ un graphe avec des poids positifs. Je cherche le chemin le plus long entre
+\item \textit{Soit $G$ un graphe avec des poids positifs. Je cherche le chemin le plus long entre
 un noeud $u$ et un noeuds $v$. J’ai à ma disposition l’implémentation de Bellman-
 Ford (qui supporte les poids négatifs). Il me suffit dès lors de calculer le plus
 court chemin sur le même graphe avec l’opposé des poids. Est-ce que cette méthode
 est valable ? Si non pouvez-vous proposer une méthode pour le calcul de
 plus long chemin ? Votre méthode s’applique-t-elle à tous les graphes ? Si non
-quels-types particuliers de graphes peut-elle gérer ? (Xavier)\\
+quels-types particuliers de graphes peut-elle gérer ?} (Xavier)\\
 
 Cette méthode est valable pour certains graphes. Le principe le plus important pour l'utilisation de cette méthode est qu'il n'y ait pas de cycle dans le graphe, dans laquelle les arcs ont une somme négative. Dans ce cas, une boucle infinie serait générée et aucun plus long chemin ne serait trouvé.
 
