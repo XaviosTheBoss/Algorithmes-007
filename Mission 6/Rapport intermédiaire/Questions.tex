@@ -65,11 +65,83 @@
 
 \item 
 
-\item 
+\item La solution est d'utiliser un Breadth-first search (BFS). En fesant celà, on trouve les noeuds adjacents au départ.Si ceux-ci ont déjà étés visités, on les ignore. Autrement, on l'ajoute aux éléments du tableau qui renverra le chemin le plus cour.  On réitère cette opération jusqu'à atteindre la sortie. On renvoie ensuite le tableau obtenu qui nous donnera le chemin désiré. 
+Notre complexité sera de O(n*p) pour une matrice d'ajacence et celà peut diférer selon l'implémentation.
+
+\begin{lstlisting}
+
+Private void bfs(Graph G, int debut,int finish)
+{
+	Queue<Integer> q = new Queue<Integer>();
+	IsAlreadyVisited[debut] = true;
+	q.enqueue(debut)
+	while(!q.isEmpty())
+	{
+	int v = q.dequeue();
+	if ( v == finish)
+		{
+		break;
+		}
+	for (int w : G.adjacent(v))
+		if(! IsAlreadyVisited[w])
+		{
+			path[w] = v ;
+			 IsAlreadyVisited[w] = true;
+			queue.enqueue(w);
+		}
+	}
+}
+\end{lstlisting} 
+
+\item On utilise un Depth-first search(DFS) qui vérifie à chaque fois dans le cas ou le noeud trouvé a déjà été visité si c'est un noeud déjà parcouru dans ce chemin du DFS. Dans ce cas, il y a cycle.
+
+\begin{lstlisting}
+Public boolean hasCycle(Graph G,  int v,  int u,hasCycle)
+{
+	 IsAlreadyVisited[v];
+	for ( int w : G.adjacent(v))
+		{
+		if(! IsAlreadyVisited[w])
+		{
+			dfs(G,w,v,hasCycle);
+		}
+		else if (w!=u) hasCycle = true;
+		}
+	return hasCycle;
+}
+\end{lstlisting} 
 
 \item 
+\begin{lstlisting}
+Public void Topologic(Graph G,int n)
+{
+	Int[]d = new Int[n]
+	Queue<Integer> q = new Queue<Integer>();
+	int k;
+	for (int i=0; i++;i <= n)
+	{
+		d[i]=i.degre()
+		if(d[i]==0)
+		{
+			q.add(i)
+		}
+	}
+	while(!q.isEmpty())
+	{
+		k=q.remove()
+		d[k]=d[k]-1;
+		for(int i : G.adjacent(k))
+		{
+			d[i]=d[i]-1;
+			if(d[i]==0)
+			{
+				q.add(i)
+			}
+		}
+	}
+}
 
-\item 
+\end{lstlisting} 
 
 \item Afin de compléter le MST partiel et retrouver un MST complet dans le graphe G, je vais appliquer l’algorithme de Kruskal. Cet algorithme est simple, il récupère tous les Lien (Edge) triés de manière croissante (plus petit poids au plus grand) et va ajouter au fur et à mesure tous ceux qui ne forme pas de cycle :
 \\
