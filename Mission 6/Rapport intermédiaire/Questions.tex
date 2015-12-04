@@ -111,7 +111,30 @@ Il y a plusieurs cas possible : \\
 Maintenant, ces diffétents cas ne couvrent pas spécifiquement notre probléme tel que je le comprends, c’est-à-dire, inclure quoi qu’il arrive l4Edge e même si celui-ci ne devrait pas se trouver dans le MST. Pour arriver à résoudre ce problème, il suffit de tweaker un petit peu le cas 2. Au moment du retrait du poids le plus haut, si celui-ci est l’Edge e, alors on retirera le second plus haut.
 
 
-\item 
+\item Oui, en utilisant une priority queue qui contiendrait les noeuds candidats à la prochaine
+relaxation de la manière suivante :\\
+\par 1 - On ajoute le noeud source s à un arbre et ses noeuds adjacents à la priority 
+queue avec leur distance à s comme clef.\\
+\par 2 - On retire de la priority queue le noeud n de clef minimale, on le rajoutte
+ à l'arbre (= on le relaxe) et on ajoute ses voisins à la queue de priorité avec comme
+ clefs leur distances à n + la distance de n à s comme étant leurs distance à s si 
+ celle-ci est plus petite que la distance à s actuelle ou si celle-ci est la première
+ distance à s ajoutée pour le noeud en cours de traitement.\\
+\par 3 - On répète l'étape 2 jusqu'à ce que chaque noeud ait été ajouté et retiré une fois
+ de la priority queue.\\
+L'arbre ainsi formé contient les plus courts chemins de s à tout noeud v de V.\\
+\par L'algo de Dijkstra a une complexité spatiale proportionnelle à |V| et une complexité
+ temporelle proportionnelle à |E|log(|V|) dans le pire des cas pour calculer tous les 
+ plus courts chemins des noeuds de V à une source appartenant à V.
+\par Démonstration :\\
+Le bottleneck dans cet algorithme est le nombre de comparaisons entre clefs des noeuds
+ dans les méthodes insert() et delMin() de la priority queue. Le nombre de noeuds dans 
+ la priority queue est au plus |V| ce qui nous donne la complexité spatiale.\\
+ Dans le pire des cas, le coût d'une insertion est proportionnel à log(|V|) et le coût
+ d'une suppression est proportionnel à 2log(|V|). Puisqu'on a au plus |V| noeuds inséré
+ et |V| noeuds supprimés, la complexité temporelle est |E|log(|V|).\\
+
+(Alexis)\\
 
 \item Soit le graphe suivant :\\
 
@@ -127,7 +150,7 @@ or en appliquant l'algorithme de Dijkstra,
 on ne peut relaxé qu'une fois chaque noeud ce qui implique qu'on ne peut parcourir
 le cycle w-z-x de longueur négative qu'une et une seule fois et l'algorithme 
 de Dijkstra ne pourra donc pas nous permettre d'obtenir la solution optimale,
- à savoir $ -\infty $. Il gardera toutefois la même complexité puisqu'en appliquant 
+ à savoir $ -\infty $. Il gardera toutefois la même complexité malgré la présence de poids négatifs puisqu'en appliquant 
  l'algorithme de Dijkstra, on ne peut relaxé qu'une seule fois chaque noeud.\\
 
 (Alexis)\\
