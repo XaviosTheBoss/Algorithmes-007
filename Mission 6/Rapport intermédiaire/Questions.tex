@@ -70,9 +70,42 @@
 
 \item 
 
-\item 
+\item Afin de compléter le MST partiel et retrouver un MST complet dans le graphe G, je vais appliquer l’algorithme de Kruskal. Cet algorithme est simple, il récupère tous les Lien (Edge) triés de manière croissante (plus petit poids au plus grand) et va ajouter au fur et à mesure tous ceux qui ne forme pas de cycle :
+\\
+\begin {verbatim}
+Public static void RecoverMST(EdgeWeightedGraph G, Queue<Edge>, UF uf)
+{
+	MinPQ<Edge> pq = new MinPQ<Edge>(G.edges());
+	while (!pq.isEmpty() && mst.size() < G.V()-1)
+	{
+		Edge e = pq.delMin();   		 //Get min weight edge on pq
+		int v = e.either(), w = e.other(v); 	//and its vertices.
+		If (uf.connected(v,w))  {continue;}	//ignore ineligible edges.
+		uf.union(v,w); 				//merge components 
+		mst.enqueue(e);				//Add edge to mst
+	}
+}
+\end {verbatism}
 
-\item 
+Cet algorithme se base sur une règle fondamentale du MST, il nepeut y avoir de cycle à l’intérieur d’un MST. Grâce à « union-find », on peut savoir si deux somments sont déjà connectés ou non, et s’il faut donc traiter cet Edge (l’ajouter au MST).
+\\
+Il est aussi possible de régénérer l’union-find depuis le MST existant, simplement en parcourant celui-ci et en liant chacun des différents sommets dans chacune des liants de ce MST partiel.
+La complexité temporelle de cette méthode est de O(Elog(E)).
+
+\item On peut élargir ce problème à un problème de MST plus vaste, c’est-à-dire : comment mettre à jour votre MST après un Edge quelconque  ait été mis à jour dans votre Graphe ? \\
+Il y a plusieurs cas possible : \\
+
+	\begin{enumerate}
+	
+	\item L’edge mis à jour est dans votre MST et sa valeur décroît : il n’y a strictement rien à faire.
+	\item L’edge mis à jour n’appartient pas au MST et sa valeur décroît : il faut ajouter l’Edge dans le MST, ce qui créera un 		cycle au sein du MST. Il suffit ensuite de parcourir le MST depuis un des deux Vertice de cet Edge (via BFS ou DFS) et 			retirer dans ce cycle l’Edge au poids le plus haut (Complexité O(N)).
+	\item L’Edge mis à jour est dans votre MST et sa valeur croît : il faut retirer  l’Edge de cet MST, ce qui créera deux 			éléments connectés qui doivent être raccordés. On peut facilement calculer ces deux composants via DFS ou BFS (Complexité O		(N)), il faut ensuite parcourir les Edge restants par ordre croissant et ajouter le premier Edge qui relie les deux 			éléments connectés.
+	\item L’Edge mis à jour ne fait pas partie du MST et sa valeur croît : Le MST actuel est toujours un MST.
+	
+	\end{enumerate}
+\\
+Maintenant, ces diffétents cas ne couvrent pas spécifiquement notre probléme tel que je le comprends, c’est-à-dire, inclure quoi qu’il arrive l4Edge e même si celui-ci ne devrait pas se trouver dans le MST. Pour arriver à résoudre ce problème, il suffit de tweaker un petit peu le cas 2. Au moment du retrait du poids le plus haut, si celui-ci est l’Edge e, alors on retirera le second plus haut.
+
 
 \item 
 
