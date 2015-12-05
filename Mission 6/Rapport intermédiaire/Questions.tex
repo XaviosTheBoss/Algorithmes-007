@@ -62,15 +62,107 @@
 \item \textit{Quelles sont structures de données alternatives pour représenter un graphe G
 non dirigé comportant n noeuds (vertex) et m arcs (edges). Quelles sont les
 complexités des opérations élémentaires \texttt{Iterable <Integer> adj(int
-v) et addEdge(int v, int w)}.} (Sundeep)\\
+v) et addEdge(int v, int w)}.} (Sundeep) \medskip
+
+Il existe trois structures de données permettant de représenter un graphe G non dirigé comportant $n$ noeuds et $m$ arcs, à savoir:
+\begin{enumerate}
+\item \textbf{Une matrice d'adjacence}: il s'agit d'un tableau de booléens dont les lignes et les colonnes correspondent aux noeuds du graphe G non dirigé.
+\item \textbf{Un tableau d'arcs}: c'est un tableau composé de deux variables correspondant aux deux noeuds qui sont liés par une certain arc.
+\item \textbf{Un tableau de liste d'adjacences} : c'est un tableau dont chacune des entrées représente un certain noeud auquel est affecté une liste d'adjacences.
+\end{enumerate}
+Ci-dessous, vous trouverez un tableau comprenant les complexités des opérations élémentaires des différentes structures de données énoncées plus haut:
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+ \texttt{Structure de données} & \texttt{adj(int v)} & \texttt{addEdge(int v, int w)} \\
+  
+  \hline Matrice d'adjacence & $O(V)$ & $O(1)$ \\ 
+  \hline Tableau d'arcs & $O(E)$ & $O(1)$ \\ 
+  \hline Tableau de liste d'adjacences & $O(degré(v))$ & $O(1)$\\
+  \hline
+\end{tabular}
+\end{center}
+\end{table}
+
 
 \item \textit{Un graphe est biparti si ses noeuds peuvent être divisés en deux ensembles disjoints de sorte qu’il n’existe pas d’arc entre deux noeuds du même ensemble.
 Proposez une méthode pour tester si un graphe est biparti et si oui qui trouverait
 une telle partition. Quelle est la complexité de votre algorithme ? Hint : utilisez
-un DFS.}(Sundeep)\\
+un DFS.}(Sundeep) \medskip
+
+La complexité de l'algorithme ci-dessous est de l'ordre de $O(V+E)$.\\
+\begin{lstlisting}
+public class Bipartite{
+    
+    private boolean[] markedYes; // markedYes[v] = true si v a ete visite en DFS
+    private boolean[] markedNo; // markedNo[v]nous fournit les sommets d'un cote du graphe bipartite
+    private boolean isBipartite; // est-ce que le graphe G est bipartite?
+    private int count;
+    
+    public Bipartite(Graph G, int s){
+        this.markedAsYes = new boolean[G.V()];
+        this.markedAsNo = new boolean[G.V()];
+        this.isBipartite = true;
+        this.count = 0;        
+        dfsYes(G, s);
+    }
+    
+    private void dfsYes(Graph G, int v){
+        markedAsYes[v] = true;
+        count++;
+        for (int w : G.adj(v)){
+            if (markedYes[w]){ // si v-w cree un certain cycle, il faut le trouver
+                isBipartite = false;
+            }
+                
+            if (!markedNo[w]) dfsNo(G, w); // on a trouve un sommet d'un cote du graphe bipartite, on reitere
+        }
+    }
+
+    private void dfsNo(Graph G, int v){
+        markedNo[v] = true;
+        count++;
+        for (int w : G.adj(v)){
+            if (markedNo[w]){
+                isBipartite = false;
+                return;
+            }
+            
+            if (!markedYes[w]) dfsYes(G, w);
+        }
+    }
+    
+    public boolean isBipartite(){ // renvoie true si le graphe est bipartite et false dans le cas contraire
+        return isBipartite;
+    }
+    
+    public int count(){
+        return count;
+    }
+    
+    public boolean[] markedYes(){
+        return markedYes;
+    }
+    
+    public boolean[] markedNo(){
+        return markedNo;
+    }
+}
+\end{lstlisting}
 
 \item \textit{Prouvez que tout graphe connecté a un noeud dont le retrait (y comprit des arcs incidents) ne déconnecterait pas le graphe. Ecrivez une méthode qui trouve un
-tel noeud. Hint : utilisez un DFS et le marquage des noeuds.} (Sundeep)\\
+tel noeud. Hint : utilisez un DFS et le marquage des noeuds.} (Sundeep) \medskip
+
+Dans le cas où nous avons un graphe connexe non cyclique, nous n'avons besoin d'aucune preuve car on remarque facilement qu'un noeud positionné à l'extrémité du graphe peut être retiré sans enlever la propriété connexe de ce dernier.\\
+Par contre, supposons que nous faisons face à un graphe G connexe cyclique, composé des noeuds $v_1, v_2, ..., v_n$ formant un cycle tel que $v_1 \Rightarrow v_2$ ($=$ $v_1$ connecté à $v_2$), $v_2 \Rightarrow v_3$, ... , $v_n \Rightarrow v_1$. Le fait d'enlever un noeud du cycle transforme notre graphe G en graphe connexe non cyclique, qui est donc toujours un graphe connexe. On peut donc toujours enlever un des noeuds du cycle d'un graphe connexe cyclique sans perdre la propriété de connexité. L'algorithme est applicable dans le cas ou un noeud du cycle est relié à un sous-graphe cyclique. De plus, si un des noeuds du cycle est relié à un sous arbre non cyclique, le raisonnement développé au dessus est d'application. 
+\subsection*{Méthode: trouver un noeud déconnectable}
+Une des méthodes possible serait d'utiliser une variante de l'algorithme de \textit{depth-first search} (DFS): On parcours chaque noeud du graphe un à un. Pour chacun, on vérifie si le noeud adjacent à chacune de ses arrêtes est marqué. Si oui, le noeud et ses arrêtes peuvent être retirés sans que le graphe ne perde son caractère connexe. Si non, on marque le noeud et on réitère avec un des noeuds adjacents non marqué.
+
+
+
+
+
 
 \item 
 
