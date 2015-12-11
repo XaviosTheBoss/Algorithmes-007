@@ -1,0 +1,149 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[final]{pdfpages} 
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage[bookmarks={true},bookmarksopen={true}]{hyperref}
+\usepackage{graphicx}
+\usepackage[a4paper]{geometry}
+\usepackage{listings}
+	\lstset{frame=tb,
+		language=Java,
+ 		aboveskip=3mm,
+  		belowskip=3mm,
+  		showstringspaces=false,
+  		columns=flexible,
+  		basicstyle={\small\ttfamily},
+  		numbers=none,
+ 		numberstyle=\tiny\color{gray},
+  		keywordstyle=\color{blue},
+  		commentstyle=\color{dkgreen},
+  		stringstyle=\color{mauve},
+  		breaklines=true,
+  		breakatwhitespace=true
+  		tabsize=3
+	}
+\pagestyle{plain}
+\setlength{\parindent}{5mm}
+
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+
+
+\title{\textbf{Projet LSINF1121 -  Algorithmique et structures de données\\ - \\ Rapport final Mission 6} \\ {\large Groupe 26}}
+\author{Laurian \bsc{Detiffe} \\(6380-12-00)\and Sundeep \bsc{Dhillon} \\(6401-11-00)\and Alexis \bsc{Macq} \\ (5910-12-00) \and Xavier \bsc{Pérignon} \\ (8025-11-00)\and Thibaut \bsc{Piquard}\\(4634-13-00)\and Thomas \bsc{Wyckmans} \\ (3601-12-00)}
+\date{date}
+\date{\vspace*{25mm}
+\includegraphics[scale=0.75]{logo.jpg}\\
+		\vspace*{30mm}
+		\begin{center}
+		Année académique 2015-2016 \\	
+		\end{center}}
+
+\begin{document}
+\thispagestyle{empty}
+
+\maketitle
+\thispagestyle{empty}
+%\tableofcontents
+\setcounter{tocdepth}{3}
+
+\newpage
+\setcounter{page}{1}
+
+\section*{Introduction}
+
+Dans le cadre du cours "Algorithmique et structures de données", il nous a été demandé de concevoir et d'implémenter une application permettant de minimiser le coût d'exploitation de réseaux aériens en utilisant des graphes où les nœuds représentent les destinations et les poids associés aux arêtes représentes le coût des trajets aériens entre l'origine et la destination de ces arêtes.
+
+\section{Choix d'implémentation}
+Tout d'abord, nous avons choisi d'implémenter la classe \verb+Controller+ qui est la seule classe appelée par la \verb+Main+ classe. \verb+Controller+ appelle la classe \verb+CitiesParser+ qui permet de parser l'argument texte qui contient les villes ainsi que les coûts du vol entre deux villes afin de créer un graphe de type \verb+AdjacencyMapUndirectedGraph+. \\ La classe \verb+AdjacencyMapUndirectedGraph+ permet de représenter et manipuler notre graphe représentant notre plan aérien.
+
+Celui-ci est ensuite transformé grâce à la classe \verb+MSTGraph+, qui s'appuie sur l'algorithme de \textit{Prim}, en graphe \verb+AdjacencyMapUndirectedGraph+ minimisé.
+
+\section{Diagramme UML de classe}
+Voir Annexe.
+
+\section{Questions liées au problème posé}
+
+\subsection*{Question 1}
+\textit{Implémenter des tests unitaires vérifiant qu’une solution donnée au problème final
+est correcte, c’est-à-dire que le graphe correspondant contient tous les noeuds,
+qu’il n’y a pas de cycle ($=$ il s’agit d’un arbre), qu’il s’agit bien d’un graphe
+connecté, que la solution est bien optimale, etc.}\\
+
+Tâche INGInious 3.
+
+\subsection*{Question 2}
+\textit{Finalement, implémenter un algorithme de résolution du problème posé et produire
+une liste de connections retenues pour chacun des 2 réseaux fournis comme
+exemples. Les solutions proposées sont-elles uniques ? Ces solutions sont-elles optimales ? Pourquoi ? Vérifier vos solutions avec vos tests unitaires.} \\
+
+Puisque rien n'empêche que le coût de plusieurs connexions aériennes soit le même, plusieurs solutions valides de MST peuvent être obtenues d'un même graphe. La forme finale du MST dépendra des choix de priorité faits par la \verb+Priority Queue+ pour ces mêmes coûts.
+% Est-ce que ça vous va? C'est une copie de l'an passé xD
+Ces solutions sont optimales vu que lorsqu'on applique l'algorithme de \verb+Prim+, on conserve uniquement les arrêtes qui ont un faible coût et ce, sans avoir de cycle dans le graphe. En output, on a donc un arbre de recouvrement de poids minimal; il s'agit d'une solution optimale.\\
+
+\subsection*{Question 3}
+\textit{Analyser la complexité temporelle de votre algorithme d’un point de vue pratique
+et vérifier si celle-ci est conforme avec les bornes théoriques de l’algorithme
+retenu. Vous disposez pour cela de 2 instances particulières du problème,
+respectivement avec 50 et 500 villes. Au besoin, vous pouvez créer des instances
+complémentaires de taille variée pour affiner votre analyse. Posez-vous la question
+de savoir si le nombre de villes du réseau potentiel est le seul paramètre
+caractérisant la taille du problème. Pourquoi ?} \\
+
+Nous avons implémenté de $Prim$ en se basant sur ce qui est décrit dans le livre DSAJ-5, dans la section 13.6.2.
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{l|c|c|c}
+fichier & nombre de vols & nombre de villes & temps \\
+\hline
+cities\_small.txt & 75 & 50 & ???sec \\
+cities.txt & 1250 & 500 & ???sec \\
+\end{tabular}
+\caption{Analyse temporelle}
+\end{table}
+En théorie, la complexité temporelle de l'algorithme de \verb+Prim+ est en $O(log(n))$.
+Le nombre de villes dans le réseau est potentiellement le seul argument si l'on part du fait qu'il n'existe que maximum $\frac{n*(n-1)}{2}$ liens possibles entre les villes. Rapportant donc ainsi la complexité temporelle dans le pire cas à $O(n^2 \times log n)$.
+
+
+\subsection*{Question 4}
+\textit{Décrire comment adapter la résolution du problème posé si l’on veut prendre
+en compte un coût additionel (fixé à 50) pour chaque ville qui sert d’étape intermédiaire
+pour connecter d’autres villes. Autrement dit, si dans la liste des
+connections retenues, l’aéroport de la ville B sert de transit pour un ou plusieurs
+vols reliant d’autres villes, on ajoute 50 au coût du réseau déployé pour cet aéroport
+de transit. Le problème devient alors de connecter l’ensemble des villes du
+réseau avec un coût total minimal, ce-inclus le coût des aéroports de transit.
+Votre algorithme de résolution de ce problème adapté a-t-il la garantie de produire
+une solution optimale ? Si oui, pourquoi ? Sinon, donnez un contre-exemple
+sur un réseau de quelques villes.} \\ 
+
+Il suffit de regarder pour chaque ville si celle-ci est transitaire. Si c'est le cas, on devra rajouter un poids de 50 à l'arrête adjacente. Ensuite, il faudra simplement vérifier pour chaque sommet (ville) qu'il est bel et bien impossible d'en faire une ville de transit en rajoutant un vol au réseau. \\
+Cette condition sera vérifiée seulement si la nouvelle arrête ajoutée a un coût plus petit que (50 $+$ le coût de l'ancienne arrête).
+
+Pour implémenter cela, il suffit de recourir à l'algorithme de recherche \verb+Brute-force+. Ensuite, on va essayer toutes les combinaisons possible et sélectionner la meilleure.
+
+
+%\section{Analyse de la complexité calculatoire}
+%\subsection{Complexité temporelle}
+
+\section{Difficultés rencontrées}
+
+En pratique, notre implémention du problème posé n'est pas optimale. En effet, sur la plate-forme INGInious, 2 tests sur 5 échouent.
+\begin{center}
+\includegraphics[scale=0.75]{fail.PNG}
+\end{center}
+
+\newpage
+
+\section{Annexe}
+\begin{center}
+\includegraphics[width=19.5cm, angle=90]{A.png}
+\end{center}
+\end{document}
